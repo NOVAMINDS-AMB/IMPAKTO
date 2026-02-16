@@ -2,6 +2,6 @@
 
 The financial digital infrastructure for the future of connecting the informal economy to formal capital.
 
-## Dev branch
+## frontend branch
 
-This is the Dev branch for the purposes of testing the solution in the dev environment before deployment to production environment.
+This is the frontend branch whose aim is ensure the frontend of the Impakto solution is working perfectly before being integrated with the backend.
