@@ -1,0 +1,35 @@
+{
+  "name": "@impakto/monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Impakto Financial Trust Infrastructure Frontend",
+  "packageManager": "pnpm@10.29.3",
+  "scripts": {
+    "dev": "pnpm -r --parallel --filter \"./apps/*\" run dev",
+    "build": "pnpm -r --filter \"./apps/*\" run build",
+    "test": "pnpm -r run test",
+    "lint": "pnpm -r run lint",
+    "clean": "pnpm -r run clean && rm -rf node_modules"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.0",
+    "eslint": "^9.0.0",
+    "prettier": "^3.0.0",
+    "turbo": "^2.0.0"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=10.0.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "sharp",
+      "@swc/core",
+      "protobufjs"
+    ]
+  }
+}
