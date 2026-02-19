@@ -21,7 +21,7 @@ export function Screen20Repayment({ onNext }: Screen20RepaymentProps) {
         <div className="bg-gray-50 rounded-xl p-6 mb-6 text-center">
           <Smartphone className="w-12 h-12 text-gray-400 mx-auto mb-4" />
           <p className="text-gray-600 mb-2">Amount to Pay</p>
-          <p className="text-4xl text-gray-900">$200</p>
+          <p className="text-4xl text-gray-900">Kshs 200</p>
         </div>
 
         <div>

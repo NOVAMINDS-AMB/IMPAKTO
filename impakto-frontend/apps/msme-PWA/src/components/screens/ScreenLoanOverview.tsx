@@ -115,15 +115,15 @@ export function ScreenLoanOverview({
             <div className="space-y-3">
               <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                 <span className="text-gray-700">Small Loan</span>
-                <span className="font-semibold text-gray-900">$100 - $500</span>
+                <span className="font-semibold text-gray-900">Kshs 1,000 - Kshs 5,000</span>
               </div>
               <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                 <span className="text-gray-700">Medium Loan</span>
-                <span className="font-semibold text-gray-900">$500 - $1,500</span>
+                <span className="font-semibold text-gray-900">Kshs 5,000 - Kshs 15,000</span>
               </div>
               <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                 <span className="text-gray-700">Large Loan</span>
-                <span className="font-semibold text-gray-900">$1,500 - $5,000</span>
+                <span className="font-semibold text-gray-900">Kshs 15,000 - Kshs 50,000</span>
               </div>
             </div>
           </div>
@@ -178,7 +178,7 @@ export function ScreenLoanOverview({
             <DollarSign className="w-6 h-6" />
             <h3 className="font-semibold text-lg">Loan Amount</h3>
           </div>
-          <p className="text-4xl font-bold mb-1">$500</p>
+          <p className="text-4xl font-bold mb-1">Kshs 15,000</p>
           <p className="text-emerald-100">Approved on Feb 5, 2026</p>
         </div>
 
@@ -190,7 +190,7 @@ export function ScreenLoanOverview({
             </div>
             <div className="flex-1">
               <p className="text-sm text-gray-600 mb-1">Outstanding Balance</p>
-              <p className="text-2xl font-semibold text-gray-900">$500</p>
+              <p className="text-2xl font-semibold text-gray-900">Kshs 5,000</p>
             </div>
           </div>
         </div>
@@ -204,7 +204,7 @@ export function ScreenLoanOverview({
             <div className="flex-1">
               <p className="text-sm text-gray-600 mb-1">Next Payment Due</p>
               <p className="text-xl font-semibold text-gray-900">Feb 15, 2026</p>
-              <p className="text-sm text-gray-600 mt-1">Amount: $100</p>
+              <p className="text-sm text-gray-600 mt-1">Amount: Kshs 1,000</p>
             </div>
           </div>
         </div>

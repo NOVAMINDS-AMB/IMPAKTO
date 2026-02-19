@@ -13,7 +13,7 @@ export function ScreenUpdatedLedger({ onBack }: ScreenUpdatedLedgerProps) {
       date: 'Feb 10, 2026',
       type: 'sale',
       description: 'Maize - 10kg bags',
-      amount: 150,
+      amount: 3500,
       isNew: true,
     },
     {
@@ -21,7 +21,7 @@ export function ScreenUpdatedLedger({ onBack }: ScreenUpdatedLedgerProps) {
       date: 'Feb 10, 2026',
       type: 'sale',
       description: 'Rice - 5kg bags',
-      amount: 250,
+      amount: 2500,
       isNew: false,
     },
     {
@@ -29,7 +29,7 @@ export function ScreenUpdatedLedger({ onBack }: ScreenUpdatedLedgerProps) {
       date: 'Feb 9, 2026',
       type: 'expense',
       description: 'Stock purchase',
-      amount: 180,
+      amount: 1800,
       isNew: false,
     },
     {
@@ -37,7 +37,7 @@ export function ScreenUpdatedLedger({ onBack }: ScreenUpdatedLedgerProps) {
       date: 'Feb 8, 2026',
       type: 'sale',
       description: 'Cooking oil',
-      amount: 120,
+      amount: 1200,
       isNew: false,
     },
     {
@@ -45,7 +45,7 @@ export function ScreenUpdatedLedger({ onBack }: ScreenUpdatedLedgerProps) {
       date: 'Feb 7, 2026',
       type: 'sale',
       description: 'Beans - 2kg',
-      amount: 85,
+      amount: 350,
       isNew: false,
     },
     {
@@ -53,7 +53,7 @@ export function ScreenUpdatedLedger({ onBack }: ScreenUpdatedLedgerProps) {
       date: 'Feb 6, 2026',
       type: 'expense',
       description: 'Transportation',
-      amount: 40,
+      amount: 400,
       isNew: false,
     },
   ];
@@ -123,7 +123,7 @@ export function ScreenUpdatedLedger({ onBack }: ScreenUpdatedLedgerProps) {
                 <p className={`text-lg font-semibold ${
                   entry.type === 'sale' ? 'text-emerald-600' : 'text-red-600'
                 }`}>
-                  {entry.type === 'sale' ? '+' : '-'}${entry.amount}
+                  {entry.type === 'sale' ? '+' : '-'}Kshs {entry.amount}
                 </p>
               </div>
             </div>

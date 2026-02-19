@@ -28,11 +28,11 @@ export function Screen21RepaymentSuccess({ onReset, onGoToDashboard }: Screen21R
           <div className="space-y-3">
             <div className="flex items-center justify-between">
               <span className="text-gray-600">Amount Paid</span>
-              <span className="font-semibold text-gray-900 text-lg">$100</span>
+              <span className="font-semibold text-gray-900 text-lg">Kshs 1,000</span>
             </div>
             <div className="flex items-center justify-between">
               <span className="text-gray-600">Remaining Balance</span>
-              <span className="font-semibold text-gray-900 text-lg">$400</span>
+              <span className="font-semibold text-gray-900 text-lg">Kshs 4,000</span>
             </div>
             <div className="flex items-center justify-between">
               <span className="text-gray-600">Next Payment Due</span>

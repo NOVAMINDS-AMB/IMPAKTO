@@ -99,7 +99,7 @@ export function ScreenMainDashboard({
                 <span className="text-gray-600 text-sm">Total Sales</span>
               </div>
               <p className="text-xl font-semibold text-gray-900">
-                {isNewUser ? '$0' : '$1,250'}
+                {isNewUser ? 'Kshs 0' : 'Kshs 12,500'}
               </p>
             </div>
 
@@ -111,7 +111,7 @@ export function ScreenMainDashboard({
                 <span className="text-gray-600 text-sm">Total Expenses</span>
               </div>
               <p className="text-xl font-semibold text-gray-900">
-                {isNewUser ? '$0' : '$780'}
+                {isNewUser ? 'Kshs 0' : 'Kshs 7,800'}
               </p>
             </div>
 
@@ -123,7 +123,7 @@ export function ScreenMainDashboard({
                 <span className="text-gray-600 text-sm">Current Balance</span>
               </div>
               <p className="text-xl font-semibold text-gray-900">
-                {isNewUser ? '$0' : '$470'}
+                {isNewUser ? 'Kshs 0' : 'Kshs 4,700'}
               </p>
             </div>
           </div>

@@ -33,7 +33,7 @@ export function LoanReview({ onApprove, onHome, onBack }: LoanReviewProps) {
             </div>
             <div>
               <span className="text-gray-600">Amount:</span>
-              <span className="ml-2">$3,000.00</span>
+              <span className="ml-2">Kshs 3,000.00</span>
             </div>
             <div>
               <span className="text-gray-600">Term:</span>
@@ -56,19 +56,19 @@ export function LoanReview({ onApprove, onHome, onBack }: LoanReviewProps) {
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between p-2 bg-gray-50 rounded">
                   <span>Jan 15, 2026 - Deposit</span>
-                  <span className="text-green-600">+$2,500</span>
+                  <span className="text-green-600">+Kshs 2,500</span>
                 </div>
                 <div className="flex justify-between p-2 bg-gray-50 rounded">
                   <span>Jan 08, 2026 - Purchase</span>
-                  <span className="text-red-600">−$450</span>
+                  <span className="text-red-600">−Kshs 4,500</span>
                 </div>
                 <div className="flex justify-between p-2 bg-gray-50 rounded">
                   <span>Dec 22, 2025 - Deposit</span>
-                  <span className="text-green-600">+$1,800</span>
+                  <span className="text-green-600">+Kshs 1,800</span>
                 </div>
                 <div className="flex justify-between p-2 bg-gray-50 rounded">
                   <span>Dec 10, 2025 - Purchase</span>
-                  <span className="text-red-600">−$320</span>
+                  <span className="text-red-600">−Kshs 3,200</span>
                 </div>
               </div>
             </div>
@@ -90,7 +90,7 @@ export function LoanReview({ onApprove, onHome, onBack }: LoanReviewProps) {
                 <div className="flex justify-between p-2 bg-gray-50 rounded">
                   <div>
                     <div>Previous Loan: ML-2025-00089</div>
-                    <div className="text-xs text-gray-500">$2,000 - 6 months</div>
+                    <div className="text-xs text-gray-500">Kshs 2,000 - 6 months</div>
                   </div>
                   <span className="text-green-600">Paid in Full</span>
                 </div>

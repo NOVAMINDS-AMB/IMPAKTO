@@ -43,7 +43,7 @@ export function LoanApplicationOverview({ onOpen, onHome, onBack }: LoanApplicat
               </div>
               <div className="flex justify-between">
                 <span className="text-gray-600">Amount:</span>
-                <span>$3,000.00</span>
+                <span>Kshs 3,000.00</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-gray-600">Term:</span>

@@ -32,7 +32,7 @@ export function Screen15RestockSuggestion({ onNext }: Screen15RestockSuggestionP
             </div>
             <span className="text-gray-900">Suggested Loan Amount</span>
           </div>
-          <p className="text-3xl text-emerald-600">$200</p>
+          <p className="text-3xl text-emerald-600">Kshs 2,000</p>
           <p className="text-sm text-gray-600 mt-2">To help you purchase inventory</p>
         </div>
       </div>

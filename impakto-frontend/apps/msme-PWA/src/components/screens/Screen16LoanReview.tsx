@@ -22,7 +22,7 @@ export function Screen16LoanReview({ onNext }: Screen16LoanReviewProps) {
             </div>
             <span className="text-gray-600">Loan Amount</span>
           </div>
-          <p className="text-4xl text-gray-900 mb-4">$200</p>
+          <p className="text-4xl text-gray-900 mb-4">Kshs 20,000</p>
           
           <div className="border-t border-gray-200 pt-4 mt-4">
             <div className="flex items-center gap-3 mb-2">
