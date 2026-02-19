@@ -83,7 +83,7 @@ export function PortfolioPerformance({ onOpenPastDecision, onHome, onBack }: Por
             <div className="space-y-3 text-sm">
               <div className="flex justify-between">
                 <span className="text-gray-600">Average Loan Amount</span>
-                <span>$2,974</span>
+                <span>Kshs 2,974</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-gray-600">Average Term</span>

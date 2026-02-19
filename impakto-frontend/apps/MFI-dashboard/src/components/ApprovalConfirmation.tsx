@@ -26,7 +26,7 @@ export function ApprovalConfirmation({ onConfirm, onHome, onBack }: ApprovalConf
               <ul className="space-y-2 text-yellow-800 mb-4">
                 <li className="flex items-start gap-2">
                   <span>•</span>
-                  <span>Commit funds of $3,000.00 to borrower Maria Santos</span>
+                  <span>Commit funds of Kshs 3,000.00 to borrower Maria Santos</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span>•</span>
@@ -63,7 +63,7 @@ export function ApprovalConfirmation({ onConfirm, onHome, onBack }: ApprovalConf
             </div>
             <div>
               <span className="text-gray-600">Loan Amount:</span>
-              <span className="ml-2">$3,000.00</span>
+              <span className="ml-2">Kshs 3,000.00</span>
             </div>
             <div>
               <span className="text-gray-600">Term:</span>

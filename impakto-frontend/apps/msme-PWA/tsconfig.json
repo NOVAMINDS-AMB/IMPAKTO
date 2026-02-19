@@ -1,6 +1,9 @@
 {
   "extends": "@impakto/config/tsconfig.base.json",
   "compilerOptions": {
+    "jsx": "react-jsx",
+    "target": "es5",
+    "lib": ["ES2015", "DOM"],
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]

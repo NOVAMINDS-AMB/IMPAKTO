@@ -1,13 +1,16 @@
 import { useState } from 'react';
-import { ChevronDown, User } from 'lucide-react';
+import { ChevronDown, User, Loader2 } from 'lucide-react';
+import { useQuery } from '@tanstack/react-query';
 
+// Updated interface to match the data coming from the Django API
 export interface LoanData {
   id: string;
-  borrower: string;
-  amount: string;
-  status: string;
-  date: string;
-  statusColor: string;
+  type: string;
+  amount: string | number;
+  is_verified: boolean;
+  timestamp: string | number | Date;
+  // Keep these if you still need them for the past loan modal
+  borrower?: string;
   term?: string;
   approvedDate?: string;
   completionDate?: string;
@@ -23,73 +26,24 @@ interface PortfolioOverviewProps {
   onLogout: () => void;
 }
 
-export const mockLoans: LoanData[] = [
-  {
-    id: 'LA-2024-00158',
-    borrower: 'Maria Santos',
-    amount: 'Kshs 3,000.00',
-    status: 'Approved',
-    date: 'Feb 4, 2026',
-    statusColor: 'bg-green-100 text-green-800',
-    term: '6 months',
-    approvedDate: 'Feb 4, 2026',
-    approvedBy: 'Jean-Paul',
-    finalStatus: 'Recently Approved',
-  },
-  {
-    id: 'LA-2024-00145',
-    borrower: 'Carlos Rodriguez',
-    amount: 'Kshs 2,500.00',
-    status: 'Active',
-    date: 'Jan 28, 2026',
-    statusColor: 'bg-blue-100 text-blue-800',
-    term: '4 months',
-    approvedDate: 'Jan 28, 2026',
-    approvedBy: 'Jean-Paul',
-    finalStatus: 'In Progress - 2 payments made',
-  },
-  {
-    id: 'LA-2024-00132',
-    borrower: 'Ana Martinez',
-    amount: 'Kshs 4,200.00',
-    status: 'Active',
-    date: 'Jan 15, 2026',
-    statusColor: 'bg-blue-100 text-blue-800',
-    term: '8 months',
-    approvedDate: 'Jan 15, 2026',
-    approvedBy: 'Jean-Paul',
-    finalStatus: 'In Progress - 3 payments made',
-  },
-  {
-    id: 'LA-2023-00891',
-    borrower: 'Luis Fernandez',
-    amount: 'Kshs 1,800.00',
-    status: 'Completed',
-    date: 'Dec 20, 2025',
-    statusColor: 'bg-gray-100 text-gray-800',
-    term: '6 months',
-    approvedDate: 'July 15, 2025',
-    completionDate: 'December 20, 2025',
-    approvedBy: 'Jean-Paul',
-    finalStatus: 'Paid in Full',
-  },
-  {
-    id: 'LA-2023-00876',
-    borrower: 'Sofia Garcia',
-    amount: 'Kshs 3,500.00',
-    status: 'Completed',
-    date: 'Dec 10, 2025',
-    statusColor: 'bg-gray-100 text-gray-800',
-    term: '6 months',
-    approvedDate: 'June 10, 2025',
-    completionDate: 'December 10, 2025',
-    approvedBy: 'Jean-Paul',
-    finalStatus: 'Paid in Full',
-  },
-];
-
-export function PortfolioOverview({ onCreateBorrower, onViewPerformance, onOpenPastLoan, onSettings, onLogout }: PortfolioOverviewProps) {
+export function PortfolioOverview({ 
+  onCreateBorrower, 
+  onViewPerformance, 
+  onOpenPastLoan, 
+  onSettings, 
+  onLogout 
+}: PortfolioOverviewProps) {
   const [showDropdown, setShowDropdown] = useState(false);
+  
+  // Fetch the data dynamically from Django using TanStack Query
+  const { data: loans, isLoading } = useQuery({
+    queryKey: ['mfi_portfolio'],
+    queryFn: async () => {
+      const res = await fetch('http://127.0.0.1:8000/api/mfi/portfolio');
+      if (!res.ok) throw new Error('Failed to fetch portfolio');
+      return res.json();
+    }
+  });
 
   return (
     <div className="min-h-screen">
@@ -143,7 +97,7 @@ export function PortfolioOverview({ onCreateBorrower, onViewPerformance, onOpenP
         <div className="grid grid-cols-4 gap-4 mb-6">
           <div className="bg-white border border-gray-200 rounded p-4">
             <div className="text-sm text-gray-600 mb-1">Total Loans</div>
-            <div className="text-2xl">23</div>
+            <div className="text-2xl">{loans?.length || 0}</div>
           </div>
           <div className="bg-white border border-gray-200 rounded p-4">
             <div className="text-sm text-gray-600 mb-1">Active Loans</div>
@@ -177,32 +131,42 @@ export function PortfolioOverview({ onCreateBorrower, onViewPerformance, onOpenP
           </div>
         </div>
         
-        <div className="bg-white border border-gray-200 rounded">
-          <div className="grid grid-cols-5 gap-4 p-4 border-b border-gray-200 text-sm text-gray-600">
+        <div className="bg-white border border-gray-200 rounded-xl shadow-sm">
+          <div className="grid grid-cols-5 gap-4 p-4 border-b border-gray-200 text-sm font-medium text-gray-500">
             <div>Loan ID</div>
-            <div>Borrower</div>
+            <div>Type</div>
             <div>Amount</div>
-            <div>Status</div>
+            <div>Verification</div>
             <div>Date</div>
           </div>
           
-          {mockLoans.map((loan) => (
-            <div
-              key={loan.id}
-              onClick={() => onOpenPastLoan(loan)}
-              className="grid grid-cols-5 gap-4 p-4 border-b border-gray-200 last:border-b-0 hover:bg-gray-50 cursor-pointer transition-colors"
-            >
-              <div className="text-sm">{loan.id}</div>
-              <div className="text-sm">{loan.borrower}</div>
-              <div className="text-sm">{loan.amount}</div>
-              <div>
-                <span className={`px-2 py-1 rounded text-xs ${loan.statusColor}`}>
-                  {loan.status}
-                </span>
-              </div>
-              <div className="text-sm text-gray-600">{loan.date}</div>
+          {isLoading ? (
+            <div className="flex justify-center p-8">
+              <Loader2 className="w-8 h-8 text-blue-600 animate-spin" />
             </div>
-          ))}
+          ) : (
+            loans?.map((loan: LoanData) => (
+              <div
+                key={loan.id}
+                onClick={() => onOpenPastLoan(loan)}
+                className="grid grid-cols-5 gap-4 p-4 border-b border-gray-200 last:border-b-0 hover:bg-gray-50 cursor-pointer transition-colors items-center"
+              >
+                <div className="text-sm font-mono text-gray-600 truncate pr-4" title={loan.id}>
+                  {loan.id.split('-').slice(0, 2).join('-')}...
+                </div>
+                <div className="text-sm font-medium text-gray-900">{loan.type}</div>
+                <div className="text-sm text-gray-900">Kshs {loan.amount}</div>
+                <div>
+                  <span className={`px-2.5 py-1 rounded-full text-xs font-medium ${loan.is_verified ? 'bg-green-100 text-green-800' : 'bg-amber-100 text-amber-800'}`}>
+                    {loan.is_verified ? 'Verified' : 'Pending'}
+                  </span>
+                </div>
+                <div className="text-sm text-gray-500">
+                    {new Date(loan.timestamp).toLocaleDateString()}
+                </div>
+              </div>
+            ))
+          )}
         </div>
       </div>
     </div>

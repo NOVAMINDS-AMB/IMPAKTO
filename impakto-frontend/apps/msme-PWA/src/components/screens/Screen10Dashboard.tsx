@@ -22,7 +22,7 @@ export function Screen10Dashboard({ onNext }: Screen10DashboardProps) {
             </div>
             <span className="text-gray-600">Total Sales</span>
           </div>
-          <p className="text-3xl text-gray-900">$1,250</p>
+          <p className="text-3xl text-gray-900">Kshs 1,250</p>
         </div>
 
         <div className="bg-white rounded-xl p-5 border border-gray-200">
@@ -32,7 +32,7 @@ export function Screen10Dashboard({ onNext }: Screen10DashboardProps) {
             </div>
             <span className="text-gray-600">Total Expenses</span>
           </div>
-          <p className="text-3xl text-gray-900">$780</p>
+          <p className="text-3xl text-gray-900">Kshs 780</p>
         </div>
 
         <div className="bg-white rounded-xl p-5 border border-gray-200">
@@ -42,7 +42,7 @@ export function Screen10Dashboard({ onNext }: Screen10DashboardProps) {
             </div>
             <span className="text-gray-600">Current Balance</span>
           </div>
-          <p className="text-3xl text-gray-900">$470</p>
+          <p className="text-3xl text-gray-900">Kshs 470</p>
         </div>
       </div>
 

@@ -125,19 +125,19 @@ export function PastLoanDetail({ onHome, onBack, loanData }: PastLoanDetailProps
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between p-2 bg-gray-50 rounded">
                   <span>May 10, 2025 - Deposit</span>
-                  <span className="text-green-600">+$1,200</span>
+                  <span className="text-green-600">+Kshs 1,200</span>
                 </div>
                 <div className="flex justify-between p-2 bg-gray-50 rounded">
                   <span>April 22, 2025 - Purchase</span>
-                  <span className="text-red-600">−$280</span>
+                  <span className="text-red-600">−Kshs 280</span>
                 </div>
                 <div className="flex justify-between p-2 bg-gray-50 rounded">
                   <span>April 05, 2025 - Deposit</span>
-                  <span className="text-green-600">+$950</span>
+                  <span className="text-green-600">+Kshs 950</span>
                 </div>
                 <div className="flex justify-between p-2 bg-gray-50 rounded">
                   <span>March 18, 2025 - Purchase</span>
-                  <span className="text-red-600">−$340</span>
+                  <span className="text-red-600">−Kshs 340</span>
                 </div>
               </div>
             </div>
@@ -159,42 +159,42 @@ export function PastLoanDetail({ onHome, onBack, loanData }: PastLoanDetailProps
                 <div className="flex justify-between p-2 bg-gray-50 rounded">
                   <div>
                     <div>Payment 1 - Aug 15, 2025</div>
-                    <div className="text-xs text-gray-500">$300.00</div>
+                    <div className="text-xs text-gray-500">Kshs 300.00</div>
                   </div>
                   <span className="text-green-600">On Time</span>
                 </div>
                 <div className="flex justify-between p-2 bg-gray-50 rounded">
                   <div>
                     <div>Payment 2 - Sep 15, 2025</div>
-                    <div className="text-xs text-gray-500">$300.00</div>
+                    <div className="text-xs text-gray-500">Kshs 300.00</div>
                   </div>
                   <span className="text-green-600">On Time</span>
                 </div>
                 <div className="flex justify-between p-2 bg-gray-50 rounded">
                   <div>
                     <div>Payment 3 - Oct 15, 2025</div>
-                    <div className="text-xs text-gray-500">$300.00</div>
+                    <div className="text-xs text-gray-500">Kshs 300.00</div>
                   </div>
                   <span className="text-green-600">On Time</span>
                 </div>
                 <div className="flex justify-between p-2 bg-gray-50 rounded">
                   <div>
                     <div>Payment 4 - Nov 15, 2025</div>
-                    <div className="text-xs text-gray-500">$300.00</div>
+                    <div className="text-xs text-gray-500">Kshs 300.00</div>
                   </div>
                   <span className="text-green-600">On Time</span>
                 </div>
                 <div className="flex justify-between p-2 bg-gray-50 rounded">
                   <div>
                     <div>Payment 5 - Dec 15, 2025</div>
-                    <div className="text-xs text-gray-500">$300.00</div>
+                    <div className="text-xs text-gray-500">Kshs 300.00</div>
                   </div>
                   <span className="text-green-600">On Time</span>
                 </div>
                 <div className="flex justify-between p-2 bg-gray-50 rounded">
                   <div>
                     <div>Final Payment - Dec 20, 2025</div>
-                    <div className="text-xs text-gray-500">$300.00</div>
+                    <div className="text-xs text-gray-500">Kshs 300.00</div>
                   </div>
                   <span className="text-green-600">Early</span>
                 </div>

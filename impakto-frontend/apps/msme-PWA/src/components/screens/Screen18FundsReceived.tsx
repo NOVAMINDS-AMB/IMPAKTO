@@ -25,7 +25,7 @@ export function Screen18FundsReceived({ onNext }: Screen18FundsReceivedProps) {
         
         <div className="bg-white rounded-xl p-6 border border-gray-200 mb-6">
           <p className="text-gray-600 mb-2">Amount Received</p>
-          <p className="text-4xl text-emerald-600">$200</p>
+          <p className="text-4xl text-emerald-600">Kshs 20,000</p>
         </div>
         
         <p className="text-gray-600">

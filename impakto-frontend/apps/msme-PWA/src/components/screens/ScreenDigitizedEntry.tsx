@@ -53,7 +53,7 @@ export function ScreenDigitizedEntry({ onNext }: ScreenDigitizedEntryProps) {
             </div>
             <div className="flex-1">
               <p className="text-sm text-gray-600">Amount</p>
-              <p className="font-semibold text-gray-900 text-xl">$150</p>
+              <p className="font-semibold text-gray-900 text-xl">Kshs 1,500</p>
             </div>
           </div>
 

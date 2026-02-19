@@ -42,7 +42,7 @@ export function ApprovedLoanStatus({ onReturnToPortfolio, onHome }: ApprovedLoan
             </div>
             <div className="flex justify-between">
               <span className="text-gray-600">Loan Amount:</span>
-              <span>$3,000.00</span>
+              <span>Kshs 3,000.00</span>
             </div>
             <div className="flex justify-between">
               <span className="text-gray-600">Term:</span>

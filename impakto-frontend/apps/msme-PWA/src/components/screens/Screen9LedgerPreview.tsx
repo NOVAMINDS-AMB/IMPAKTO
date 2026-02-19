@@ -30,17 +30,17 @@ export function Screen9LedgerPreview({ onNext }: Screen9LedgerPreviewProps) {
               <tr>
                 <td className="p-3 text-gray-600">Feb 1</td>
                 <td className="p-3 text-gray-900">Flour</td>
-                <td className="p-3 text-right text-gray-900">$25</td>
+                <td className="p-3 text-right text-gray-900">Kshs 250</td>
               </tr>
               <tr>
                 <td className="p-3 text-gray-600">Feb 2</td>
                 <td className="p-3 text-gray-900">Sugar</td>
-                <td className="p-3 text-right text-gray-900">$15</td>
+                <td className="p-3 text-right text-gray-900">Kshs 150</td>
               </tr>
               <tr>
                 <td className="p-3 text-gray-600">Feb 3</td>
                 <td className="p-3 text-gray-900">Rice</td>
-                <td className="p-3 text-right text-gray-900">$30</td>
+                <td className="p-3 text-right text-gray-900">Kshs 300</td>
               </tr>
             </tbody>
           </table>

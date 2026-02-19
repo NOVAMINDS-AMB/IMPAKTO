@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { syncData } from './lib/sync';
 import { Screen1Landing } from './components/screens/Screen1Landing';
 import { ScreenLogin } from './components/screens/ScreenLogin';
 import { ScreenLogin2FA } from './components/screens/ScreenLogin2FA';
@@ -71,6 +72,23 @@ export default function App() {
   const [userType, setUserType] = useState<UserType>('new');
   const [loginUsername, setLoginUsername] = useState('');
   const [isAddingNewEntry, setIsAddingNewEntry] = useState(false);
+
+  // The "Auto-Sync" Logic
+  useEffect(() => {
+    // 1. Try to sync immediately on load
+    syncData();
+
+    // 2. Listen for network recovery
+    const handleOnline = () => {
+      console.log("🌐 Back Online! Triggering sync...");
+      syncData();
+    };
+
+    window.addEventListener('online', handleOnline);
+    
+    // Cleanup the event listener on unmount
+    return () => window.removeEventListener('online', handleOnline);
+  }, []); // <-- Added the empty dependency array here to prevent infinite rendering triggers!
 
   const navigateTo = (screen: AppScreen) => {
     setCurrentScreen(screen);
@@ -158,6 +176,7 @@ export default function App() {
         {currentScreen === 'main-dashboard' && (
           <ScreenMainDashboard
             isNewUser={isNewUser}
+            hasActiveLoan={hasActiveLoan}
             onScanLedger={() => {
               setIsAddingNewEntry(false);
               navigateTo('ledger-intro');
