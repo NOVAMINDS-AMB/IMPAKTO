@@ -25,7 +25,7 @@ export function LoanReview({ onApprove, onHome, onBack }: LoanReviewProps) {
           <div className="grid grid-cols-2 gap-3 text-sm">
             <div>
               <span className="text-gray-600">Borrower:</span>
-              <span className="ml-2">Maria Santos</span>
+              <span className="ml-2">Lucy Wachira</span>
             </div>
             <div>
               <span className="text-gray-600">Application ID:</span>

@@ -26,7 +26,7 @@ interface PortfolioOverviewProps {
 export const mockLoans: LoanData[] = [
   {
     id: 'LA-2024-00158',
-    borrower: 'Maria Santos',
+    borrower: 'Lucy Wachira',
     amount: 'Kshs 3,000.00',
     status: 'Approved',
     date: 'Feb 4, 2026',
@@ -38,7 +38,7 @@ export const mockLoans: LoanData[] = [
   },
   {
     id: 'LA-2024-00145',
-    borrower: 'Carlos Rodriguez',
+    borrower: 'Carlos Wafula',
     amount: 'Kshs 2,500.00',
     status: 'Active',
     date: 'Jan 28, 2026',
@@ -50,7 +50,7 @@ export const mockLoans: LoanData[] = [
   },
   {
     id: 'LA-2024-00132',
-    borrower: 'Ana Martinez',
+    borrower: 'Ana Bett',
     amount: 'Kshs 4,200.00',
     status: 'Active',
     date: 'Jan 15, 2026',

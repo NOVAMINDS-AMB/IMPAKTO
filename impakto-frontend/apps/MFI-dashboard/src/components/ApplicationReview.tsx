@@ -48,7 +48,7 @@ export function ApplicationReview({ onEdit, onContinue, onHome, onBack }: Applic
           <div className="space-y-3 text-sm">
             <div className="flex justify-between">
               <span className="text-gray-600">Borrower:</span>
-              <span>Maria Santos</span>
+              <span>Lucy Wachira</span>
             </div>
             <div className="flex justify-between">
               <span className="text-gray-600">Loan Product:</span>
