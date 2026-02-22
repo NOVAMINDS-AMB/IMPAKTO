@@ -26,13 +26,72 @@ interface PortfolioOverviewProps {
   onLogout: () => void;
 }
 
-export function PortfolioOverview({ 
-  onCreateBorrower, 
-  onViewPerformance, 
-  onOpenPastLoan, 
-  onSettings, 
-  onLogout 
-}: PortfolioOverviewProps) {
+export const mockLoans: LoanData[] = [
+  {
+    id: 'LA-2024-00158',
+    borrower: 'Lucy Wachira',
+    amount: 'Kshs 3,000.00',
+    status: 'Approved',
+    date: 'Feb 4, 2026',
+    statusColor: 'bg-green-100 text-green-800',
+    term: '6 months',
+    approvedDate: 'Feb 4, 2026',
+    approvedBy: 'Jean-Paul',
+    finalStatus: 'Recently Approved',
+  },
+  {
+    id: 'LA-2024-00145',
+    borrower: 'Carlos Wafula',
+    amount: 'Kshs 2,500.00',
+    status: 'Active',
+    date: 'Jan 28, 2026',
+    statusColor: 'bg-blue-100 text-blue-800',
+    term: '4 months',
+    approvedDate: 'Jan 28, 2026',
+    approvedBy: 'Jean-Paul',
+    finalStatus: 'In Progress - 2 payments made',
+  },
+  {
+    id: 'LA-2024-00132',
+    borrower: 'Ana Bett',
+    amount: 'Kshs 4,200.00',
+    status: 'Active',
+    date: 'Jan 15, 2026',
+    statusColor: 'bg-blue-100 text-blue-800',
+    term: '8 months',
+    approvedDate: 'Jan 15, 2026',
+    approvedBy: 'Jean-Paul',
+    finalStatus: 'In Progress - 3 payments made',
+  },
+  {
+    id: 'LA-2023-00891',
+    borrower: 'Luis Fernandez',
+    amount: 'Kshs 1,800.00',
+    status: 'Completed',
+    date: 'Dec 20, 2025',
+    statusColor: 'bg-gray-100 text-gray-800',
+    term: '6 months',
+    approvedDate: 'July 15, 2025',
+    completionDate: 'December 20, 2025',
+    approvedBy: 'Jean-Paul',
+    finalStatus: 'Paid in Full',
+  },
+  {
+    id: 'LA-2023-00876',
+    borrower: 'Sofia Garcia',
+    amount: 'Kshs 3,500.00',
+    status: 'Completed',
+    date: 'Dec 10, 2025',
+    statusColor: 'bg-gray-100 text-gray-800',
+    term: '6 months',
+    approvedDate: 'June 10, 2025',
+    completionDate: 'December 10, 2025',
+    approvedBy: 'Jean-Paul',
+    finalStatus: 'Paid in Full',
+  },
+];
+
+export function PortfolioOverview({ onCreateBorrower, onViewPerformance, onOpenPastLoan, onSettings, onLogout }: PortfolioOverviewProps) {
   const [showDropdown, setShowDropdown] = useState(false);
   
   // Fetch the data dynamically from Django using TanStack Query

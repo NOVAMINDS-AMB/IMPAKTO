@@ -25,7 +25,7 @@ export function LoanReview({ onApprove, onHome, onBack }: LoanReviewProps) {
           <div className="grid grid-cols-2 gap-3 text-sm">
             <div>
               <span className="text-gray-600">Borrower:</span>
-              <span className="ml-2">Maria Santos</span>
+              <span className="ml-2">Lucy Wachira</span>
             </div>
             <div>
               <span className="text-gray-600">Application ID:</span>
@@ -60,7 +60,7 @@ export function LoanReview({ onApprove, onHome, onBack }: LoanReviewProps) {
                 </div>
                 <div className="flex justify-between p-2 bg-gray-50 rounded">
                   <span>Jan 08, 2026 - Purchase</span>
-                  <span className="text-red-600">−Kshs 450</span>
+                  <span className="text-red-600">−Kshs 4,500</span>
                 </div>
                 <div className="flex justify-between p-2 bg-gray-50 rounded">
                   <span>Dec 22, 2025 - Deposit</span>
@@ -68,7 +68,7 @@ export function LoanReview({ onApprove, onHome, onBack }: LoanReviewProps) {
                 </div>
                 <div className="flex justify-between p-2 bg-gray-50 rounded">
                   <span>Dec 10, 2025 - Purchase</span>
-                  <span className="text-red-600">−Kshs 320</span>
+                  <span className="text-red-600">−Kshs 3,200</span>
                 </div>
               </div>
             </div>
@@ -90,7 +90,7 @@ export function LoanReview({ onApprove, onHome, onBack }: LoanReviewProps) {
                 <div className="flex justify-between p-2 bg-gray-50 rounded">
                   <div>
                     <div>Previous Loan: ML-2025-00089</div>
-                    <div className="text-xs text-gray-500">$2,000 - 6 months</div>
+                    <div className="text-xs text-gray-500">Kshs 2,000 - 6 months</div>
                   </div>
                   <span className="text-green-600">Paid in Full</span>
                 </div>

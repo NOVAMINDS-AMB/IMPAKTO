@@ -8,27 +8,56 @@ interface ScreenUpdatedLedgerProps {
 }
 
 export function ScreenUpdatedLedger({ onBack }: ScreenUpdatedLedgerProps) {
-  // Replace static data with the hook. Assuming User ID 1 for testing.
-  const { data: entries, isLoading, isError } = useLedgerEntries(1);
-
-  if (isLoading) {
-    return (
-      <MobileScreen backgroundColor="bg-gray-50">
-        <div className="flex-1 flex justify-center items-center">
-          <Loader2 className="w-10 h-10 animate-spin text-emerald-600" />
-        </div>
-      </MobileScreen>
-    );
-  }
-
-  if (isError ||!entries) {
-    return (
-      <MobileScreen backgroundColor="bg-gray-50">
-        <p className="text-red-500 text-center mt-10">Failed to load ledger.</p>
-        <PrimaryButton onClick={onBack}>Go Back</PrimaryButton>
-      </MobileScreen>
-    );
-  }
+  const entries = [
+    {
+      id: 6,
+      date: 'Feb 10, 2026',
+      type: 'sale',
+      description: 'Maize - 10kg bags',
+      amount: 3500,
+      isNew: true,
+    },
+    {
+      id: 1,
+      date: 'Feb 10, 2026',
+      type: 'sale',
+      description: 'Rice - 5kg bags',
+      amount: 2500,
+      isNew: false,
+    },
+    {
+      id: 2,
+      date: 'Feb 9, 2026',
+      type: 'expense',
+      description: 'Stock purchase',
+      amount: 1800,
+      isNew: false,
+    },
+    {
+      id: 3,
+      date: 'Feb 8, 2026',
+      type: 'sale',
+      description: 'Cooking oil',
+      amount: 1200,
+      isNew: false,
+    },
+    {
+      id: 4,
+      date: 'Feb 7, 2026',
+      type: 'sale',
+      description: 'Beans - 2kg',
+      amount: 350,
+      isNew: false,
+    },
+    {
+      id: 5,
+      date: 'Feb 6, 2026',
+      type: 'expense',
+      description: 'Transportation',
+      amount: 400,
+      isNew: false,
+    },
+  ];
 
   return (
     <MobileScreen backgroundColor="bg-gray-50">
@@ -74,7 +103,7 @@ export function ScreenUpdatedLedger({ onBack }: ScreenUpdatedLedgerProps) {
                 <p className={`text-lg font-semibold ${
                   entry.type === 'SALE'? 'text-emerald-600' : 'text-red-600'
                 }`}>
-                  {entry.type === 'SALE'? '+' : '-'} Kshs {entry.amount}
+                  {entry.type === 'sale' ? '+' : '-'}Kshs {entry.amount}
                 </p>
               </div>
             </div>

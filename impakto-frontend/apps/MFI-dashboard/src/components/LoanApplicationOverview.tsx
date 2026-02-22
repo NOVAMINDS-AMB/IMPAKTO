@@ -26,7 +26,7 @@ export function LoanApplicationOverview({ onOpen, onHome, onBack }: LoanApplicat
             </div>
             <div>
               <span className="text-sm text-gray-600 block mb-1">Borrower Name</span>
-              <span>Maria Santos</span>
+              <span>Lucy Wachira</span>
             </div>
             <div>
               <span className="text-sm text-gray-600 block mb-1">Loan Officer</span>

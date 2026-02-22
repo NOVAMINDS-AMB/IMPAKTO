@@ -38,7 +38,7 @@ export function ApprovedLoanStatus({ onReturnToPortfolio, onHome }: ApprovedLoan
             </div>
             <div className="flex justify-between">
               <span className="text-gray-600">Borrower:</span>
-              <span>Maria Santos</span>
+              <span>Lucy Wachira</span>
             </div>
             <div className="flex justify-between">
               <span className="text-gray-600">Loan Amount:</span>

@@ -15,35 +15,35 @@ export function ScreenLedgerRecords({ onBack, onScanNew, onViewEntry }: ScreenLe
       date: 'Feb 10, 2026',
       type: 'sale',
       description: 'Rice - 5kg bags',
-      amount: 250,
+      amount: 2500,
     },
     {
       id: 2,
       date: 'Feb 9, 2026',
       type: 'expense',
       description: 'Stock purchase',
-      amount: 180,
+      amount: 1800,
     },
     {
       id: 3,
       date: 'Feb 8, 2026',
       type: 'sale',
       description: 'Cooking oil',
-      amount: 120,
+      amount: 1200,
     },
     {
       id: 4,
       date: 'Feb 7, 2026',
       type: 'sale',
       description: 'Beans - 2kg',
-      amount: 85,
+      amount: 350,
     },
     {
       id: 5,
       date: 'Feb 6, 2026',
       type: 'expense',
       description: 'Transportation',
-      amount: 40,
+      amount: 400,
     },
   ];
 
@@ -100,7 +100,7 @@ export function ScreenLedgerRecords({ onBack, onScanNew, onViewEntry }: ScreenLe
                 <p className={`text-lg font-semibold ${
                   entry.type === 'sale' ? 'text-emerald-600' : 'text-red-600'
                 }`}>
-                  {entry.type === 'sale' ? '+' : '-'}${entry.amount}
+                  {entry.type === 'sale' ? '+' : '-'}Kshs {entry.amount}
                 </p>
               </div>
             </div>

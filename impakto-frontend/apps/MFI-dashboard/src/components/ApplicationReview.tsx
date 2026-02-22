@@ -31,7 +31,7 @@ export function ApplicationReview({ onEdit, onContinue, onHome, onBack }: Applic
                 </li>
                 <li className="flex items-start gap-2">
                   <span>•</span>
-                  <span>Loan amount exceeds maximum for selected product (Max: kshs 3,000)</span>
+                  <span>Loan amount exceeds maximum for selected product (Max: Kshs 30,000)</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span>•</span>
@@ -48,7 +48,7 @@ export function ApplicationReview({ onEdit, onContinue, onHome, onBack }: Applic
           <div className="space-y-3 text-sm">
             <div className="flex justify-between">
               <span className="text-gray-600">Borrower:</span>
-              <span>Maria Santos</span>
+              <span>Lucy Wachira</span>
             </div>
             <div className="flex justify-between">
               <span className="text-gray-600">Loan Product:</span>
@@ -56,7 +56,7 @@ export function ApplicationReview({ onEdit, onContinue, onHome, onBack }: Applic
             </div>
             <div className="flex justify-between">
               <span className="text-gray-600">Requested Amount:</span>
-              <span>kshs 5,000.00</span>
+              <span>Kshs 50,000.00</span>
             </div>
             <div className="flex justify-between">
               <span className="text-gray-600">Status:</span>

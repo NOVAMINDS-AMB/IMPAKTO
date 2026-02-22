@@ -21,7 +21,7 @@ export function Screen19OutstandingLoan({ onNext, onGoToDashboard }: Screen19Out
               <DollarSign className="w-5 h-5" />
               <p className="text-sm text-emerald-100">Outstanding Balance</p>
             </div>
-            <p className="text-4xl font-bold">Kshs 5,000</p>
+            <p className="text-4xl font-bold">Kshs 20,000</p>
           </div>
 
           {/* Loan Details */}
@@ -57,11 +57,15 @@ export function Screen19OutstandingLoan({ onNext, onGoToDashboard }: Screen19Out
             <div className="space-y-2">
               <div className="flex items-center justify-between text-sm">
                 <span className="text-gray-600">Amount per week</span>
+<<<<<<< HEAD
                 <span className="font-medium text-gray-900">Kshs 1,000</span>
+=======
+                <span className="font-medium text-gray-900">Kshs 2,000</span>
+>>>>>>> e9450ad9df941e6350158a30267eaead8c29da15
               </div>
               <div className="flex items-center justify-between text-sm">
                 <span className="text-gray-600">Duration</span>
-                <span className="font-medium text-gray-900">6 weeks</span>
+                <span className="font-medium text-gray-900">12 weeks</span>
               </div>
               <div className="flex items-center justify-between text-sm">
                 <span className="text-gray-600">Interest Rate</span>

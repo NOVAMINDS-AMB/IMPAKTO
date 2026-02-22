@@ -178,7 +178,7 @@ export function ScreenLoanOverview({
             <DollarSign className="w-6 h-6" />
             <h3 className="font-semibold text-lg">Loan Amount</h3>
           </div>
-          <p className="text-4xl font-bold mb-1">Kshs 5,000</p>
+          <p className="text-4xl font-bold mb-1">Kshs 15,000</p>
           <p className="text-emerald-100">Approved on Feb 5, 2026</p>
         </div>
 
