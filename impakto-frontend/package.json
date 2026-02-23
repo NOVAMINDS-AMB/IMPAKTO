@@ -29,7 +29,8 @@
       "esbuild",
       "sharp",
       "@swc/core",
-      "protobufjs"
+      "protobufjs",
+      "@tailwindcss/oxide"      
     ]
   }
 }

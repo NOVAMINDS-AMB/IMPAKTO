@@ -1,5 +1,5 @@
 import { ArrowRight, Shield, Users } from 'lucide-react';
-import { Button } from './ui/button';
+import { Button } from "@impakto/ui/src/ui_components/button";
 import { ImageWithFallback } from './figma/ImageWithFallback';
 
 export function HeroSection() {

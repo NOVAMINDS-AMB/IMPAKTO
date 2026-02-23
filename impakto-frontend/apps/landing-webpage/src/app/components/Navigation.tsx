@@ -1,5 +1,5 @@
 import { Building2, User } from 'lucide-react';
-import { Button } from './ui/button';
+import { Button } from "@impakto/ui/src/ui_components/button";
 
 export function Navigation() {
   return (
