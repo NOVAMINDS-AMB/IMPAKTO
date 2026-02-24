@@ -8,10 +8,10 @@ export function Navigation() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center space-x-2">
-            <div className="w-10 h-10 bg-gradient-to-br from-blue-900 to-blue-700 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-xl">I</span>
+            <div className="w-10 h-10 bg-gradient-to-br from-white-800 to-white-700 rounded-lg flex items-center justify-center">
+              <img src="./Impakto Official Logo.jpeg" alt="Impakto logo" className="w-10 h-10 object-contain" />
             </div>
-            <span className="text-2xl font-bold bg-gradient-to-r from-blue-900 to-blue-700 bg-clip-text text-transparent">
+            <span className="text-2xl font-bold bg-gradient-to-r from-green-700 to-green-500 bg-clip-text text-transparent">
               Impakto
             </span>
           </div>
@@ -27,23 +27,29 @@ export function Navigation() {
               </a>
             </div>
             
+            {/* Link to MSME PWA (Update href to your future local/prod URL) */}
+            <a href="http://localhost:5174" className="inline-block">
             <Button 
               variant="ghost" 
-              className="text-slate-700 hover:text-blue-900 hover:bg-blue-50"
+              className="text-slate-700 hover:text-green-600 hover:bg-blue-50"
             >
               <User className="w-4 h-4 mr-2" />
               <span className="hidden sm:inline">MSME Login</span>
               <span className="sm:hidden">Login</span>
             </Button>
+            </a>
             
+            {/* Link to MFI Dashboard (Update href to your future local/prod URL) */}
+            <a href="http://localhost:5173" className="inline-block">
             <Button 
               variant="outline" 
-              className="border-blue-900 text-blue-900 hover:bg-blue-900 hover:text-white"
+              className="border-blue-700 text-blue-700 hover:bg-blue-600 hover:text-white"
             >
               <Building2 className="w-4 h-4 mr-2" />
               <span className="hidden sm:inline">Institution Login</span>
               <span className="sm:hidden">MFI</span>
             </Button>
+            </a>
           </div>
         </div>
       </div>

@@ -26,47 +26,54 @@ export function HeroSection() {
             {/* Headline */}
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 leading-tight">
               Building the{' '}
-              <span className="bg-gradient-to-r from-blue-900 via-blue-700 to-amber-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-blue-700 via-teal-500 to-green-500 bg-clip-text text-transparent">
                 Financial Trust Layer
               </span>{' '}
+              {/* <span className="bg-gradient-to-r from-blue-900 via-blue-700 to-amber-600 bg-clip-text text-transparent">
+                Financial Trust Layer
+              </span>{' '} */}
               for Africa
             </h1>
 
             {/* Subheadline */}
             <p className="text-lg sm:text-xl text-slate-600 leading-relaxed">
-              Impakto empowers individuals and businesses to securely generate, control, and present their financial story—bridging the informal economy with formal capital through verifiable trust infrastructure.
+              Impakto empowers individuals and businesses to securely generate, control and present their financial story; bridging the informal economy with formal capital through verifiable trust infrastructure.
             </p>
 
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row gap-4">
+              <a href="http://localhost:5174" className="inline-block">
               <Button 
                 size="lg" 
-                className="bg-blue-900 hover:bg-blue-800 text-white group"
+                className="bg-green-600 hover:bg-green-500 text-white group"
               >
                 <Users className="w-5 h-5 mr-2" />
                 Access MSME Portal
                 <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
               </Button>
+              </a>
               
+              <a href="http://localhost:5173" className="inline-block">
               <Button 
                 size="lg" 
                 variant="outline"
-                className="border-2 border-blue-900 text-blue-900 hover:bg-blue-900 hover:text-white group"
+                className="bg-blue-900 text-white group hover:bg-blue-700 hover:text-white group"
               >
                 <Shield className="w-5 h-5 mr-2" />
                 Access MFI Dashboard
                 <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
               </Button>
+              </a>
             </div>
 
             {/* Trust Indicators */}
             <div className="flex flex-wrap gap-8 pt-4">
               <div>
-                <div className="text-3xl font-bold text-blue-900">100K+</div>
+                <div className="text-3xl font-bold text-blue-900">100+</div>
                 <div className="text-sm text-slate-600">MSMEs Empowered</div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-blue-900">500+</div>
+                <div className="text-3xl font-bold text-blue-900">5+</div>
                 <div className="text-sm text-slate-600">Partner Institutions</div>
               </div>
               <div>
@@ -80,7 +87,7 @@ export function HeroSection() {
           <div className="relative">
             <div className="relative rounded-2xl overflow-hidden shadow-2xl">
               <ImageWithFallback
-                src="https://images.unsplash.com/photo-1758519291531-e96279895745?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxBZnJpY2FuJTIwYnVzaW5lc3MlMjBwcm9mZXNzaW9uYWwlMjB0ZWNobm9sb2d5fGVufDF8fHx8MTc3MTc2MDkxNnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+                src="./Hero_Section.png"
                 alt="African business professional using technology"
                 className="w-full h-auto"
               />
@@ -90,7 +97,7 @@ export function HeroSection() {
                 <div className="flex items-center justify-between">
                   <div>
                     <div className="text-sm text-slate-600">Trust Score</div>
-                    <div className="text-2xl font-bold text-green-600">A+</div>
+                    <div className="text-2xl font-bold text-green-600">720</div>
                   </div>
                   <div className="text-right">
                     <div className="text-sm text-slate-600">Verification</div>

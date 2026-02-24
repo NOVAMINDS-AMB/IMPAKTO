@@ -18,8 +18,8 @@ export function TwoSidedMarketplace() {
         {/* Split Screen Layout */}
         <div className="grid lg:grid-cols-2 gap-8">
           {/* MSMEs Card */}
-          <div className="bg-white rounded-2xl shadow-xl overflow-hidden border-2 border-blue-200 hover:border-blue-400 transition-all duration-300">
-            <div className="bg-gradient-to-br from-blue-900 to-blue-700 p-8 text-white">
+          <div className="bg-white rounded-2xl shadow-xl overflow-hidden border-2 border-green-200 hover:border-green-400 transition-all duration-300">
+            <div className="bg-gradient-to-br from-green-900 to-green-600 p-8 text-white">
               <div className="flex items-center space-x-3 mb-4">
                 <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center">
                   <Smartphone className="w-6 h-6" />
@@ -34,7 +34,7 @@ export function TwoSidedMarketplace() {
             <div className="p-8 space-y-6">
               <div className="relative rounded-xl overflow-hidden mb-6">
                 <ImageWithFallback
-                  src="https://images.unsplash.com/photo-1655720357872-ce227e4164ba?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxBZnJpY2FuJTIwZW50cmVwcmVuZXVyJTIwc21hbGwlMjBidXNpbmVzc3xlbnwxfHx8fDE3NzE3NjA5MTd8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+                  src="./MSMEs.png"
                   alt="African entrepreneur managing small business"
                   className="w-full h-48 object-cover"
                 />
@@ -92,7 +92,7 @@ export function TwoSidedMarketplace() {
 
           {/* MFIs Card */}
           <div className="bg-white rounded-2xl shadow-xl overflow-hidden border-2 border-slate-200 hover:border-slate-400 transition-all duration-300">
-            <div className="bg-gradient-to-br from-slate-800 to-slate-900 p-8 text-white">
+            <div className="bg-gradient-to-br from-slate-800 to-blue-900 p-8 text-white">
               <div className="flex items-center space-x-3 mb-4">
                 <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center">
                   <Building className="w-6 h-6" />
@@ -107,7 +107,7 @@ export function TwoSidedMarketplace() {
             <div className="p-8 space-y-6">
               <div className="relative rounded-xl overflow-hidden mb-6">
                 <ImageWithFallback
-                  src="https://images.unsplash.com/photo-1638687095222-c7897398d16b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmaW50ZWNoJTIwZGlnaXRhbCUyMGZpbmFuY2lhbCUyMHRydXN0fGVufDF8fHx8MTc3MTc2MDkxN3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+                  src="./MFIs.png"
                   alt="Digital financial technology infrastructure"
                   className="w-full h-48 object-cover"
                 />

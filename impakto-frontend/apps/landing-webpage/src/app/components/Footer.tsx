@@ -8,8 +8,8 @@ export function Footer() {
           {/* Brand Column */}
           <div className="md:col-span-1">
             <div className="flex items-center space-x-2 mb-4">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-400 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xl">I</span>
+              <div className="w-10 h-10 bg-gradient-to-br from-slate-900 to-slate-900 rounded-lg flex items-center justify-center">
+                <img src="./Impakto Official Logo.jpeg" alt="Impakto logo" className="w-10 h-10 object-contain" />
               </div>
               <span className="text-2xl font-bold">Impakto</span>
             </div>
@@ -34,12 +34,12 @@ export function Footer() {
               </li>
               <li>
                 <a href="#" className="text-slate-400 hover:text-blue-400 transition-colors">
-                  API Documentation
+                  API Documentation (coming soon)
                 </a>
               </li>
               <li>
                 <a href="#" className="text-slate-400 hover:text-blue-400 transition-colors">
-                  Integration Guide
+                  Integration Guide (coming soon)
                 </a>
               </li>
             </ul>
@@ -51,22 +51,22 @@ export function Footer() {
             <ul className="space-y-2 text-sm">
               <li>
                 <a href="#" className="text-slate-400 hover:text-blue-400 transition-colors">
-                  Terms of Service
+                  Terms of Service (coming soon)
                 </a>
               </li>
               <li>
                 <a href="#" className="text-slate-400 hover:text-blue-400 transition-colors">
-                  Privacy Policy
+                  Privacy Policy (coming soon)
                 </a>
               </li>
               <li>
                 <a href="#" className="text-slate-400 hover:text-blue-400 transition-colors">
-                  Algorithmic Governance Policy
+                  Algorithmic Governance Policy (coming soon)
                 </a>
               </li>
               <li>
                 <a href="#" className="text-slate-400 hover:text-blue-400 transition-colors">
-                  Compliance & Security
+                  Compliance & Security (coming soon)
                 </a>
               </li>
             </ul>
@@ -78,13 +78,13 @@ export function Footer() {
             <ul className="space-y-3 text-sm">
               <li className="flex items-start space-x-2">
                 <Mail className="w-4 h-4 mt-1 text-blue-400 flex-shrink-0" />
-                <a href="mailto:info@impakto.africa" className="text-slate-400 hover:text-blue-400 transition-colors">
-                  info@impakto.africa
+                <a href="mailto:impaktosystems@gmail.com" className="text-slate-400 hover:text-blue-400 transition-colors">
+                  impaktosystems@gmail.com
                 </a>
               </li>
               <li className="flex items-start space-x-2">
                 <Phone className="w-4 h-4 mt-1 text-blue-400 flex-shrink-0" />
-                <span className="text-slate-400">+254 700 000 000</span>
+                <span className="text-slate-400">+254 792 773 229</span>
               </li>
               <li className="flex items-start space-x-2">
                 <MapPin className="w-4 h-4 mt-1 text-blue-400 flex-shrink-0" />
