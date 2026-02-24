@@ -1,6 +1,6 @@
 import { MobileScreen } from '../MobileScreen';
 import { PrimaryButton } from '../PrimaryButton';
-import { Sprout } from 'lucide-react';
+// import { Sprout } from 'lucide-react';
 
 interface Screen1LandingProps {
   onNext: () => void;
@@ -11,8 +11,13 @@ export function Screen1Landing({ onNext, onLogin }: Screen1LandingProps) {
   return (
     <MobileScreen>
       <div className="flex-1 flex flex-col justify-center items-center text-center">
-        <div className="mb-8 bg-emerald-100 rounded-full p-6">
-          <Sprout className="w-16 h-16 text-emerald-600" />
+        <div className="mb-5 bg-white-100 rounded-full p-6 flex items-center justify-center">
+           <img 
+            src="/Impakto Official Logo.jpeg" 
+            alt="Impakto logo" 
+            className="w-16 h-16 object-contain" 
+            />
+          {/* <Sprout className="w-16 h-16 text-emerald-600" /> */}
         </div>
         <h1 className="text-3xl mb-2 text-gray-900">
           <span className="font-bold">Impakto</span>

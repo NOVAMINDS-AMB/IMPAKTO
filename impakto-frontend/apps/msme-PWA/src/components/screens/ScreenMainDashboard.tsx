@@ -44,7 +44,11 @@ export function ScreenMainDashboard({
       <div className="mb-6 flex items-center justify-between relative">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <Sprout className="w-6 h-6 text-emerald-600" />
+             <img 
+            src="/Impakto Official Logo.jpeg" 
+            alt="Impakto logo" 
+            className="w-8 h-8 object-contain" 
+            />
             <h1 className="text-xl text-gray-900 font-bold">Impakto</h1>
           </div>
           <p className="text-gray-600">Your Business Dashboard</p>
