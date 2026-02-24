@@ -1,0 +1,41 @@
+# docker-compose.yml
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    restart: always
+    environment:
+      POSTGRES_DB: impakto_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: impaktoadmin # Change this in production
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  backend:
+    build: ./impakto-backend
+    restart: always
+    command: >
+      sh -c "python manage.py migrate &&
+             gunicorn --bind 0.0.0.0:8000 impakto_config.wsgi:application"
+    environment:
+      - POSTGRES_DB=impakto_db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=impaktoadmin
+      - POSTGRES_HOST=db
+      - POSTGRES_PORT=5432
+      # Update ALLOWED_HOSTS for Django security
+      - ALLOWED_HOSTS=impakto.systems,app.impakto.systems,mfi.impakto.systems,localhost,127.0.0.1
+    depends_on:
+      - db
+
+  frontend:
+    build: ./impakto-frontend
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:
