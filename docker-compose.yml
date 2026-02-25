@@ -34,6 +34,10 @@ services:
     restart: always
     ports:
       - "80:80"
+      - "443:443" # Open the secure port
+    volumes:
+      # Pass the certificates from the Ubuntu host into the Nginx container
+      - /etc/letsencrypt:/etc/letsencrypt:ro
     depends_on:
       - backend
 

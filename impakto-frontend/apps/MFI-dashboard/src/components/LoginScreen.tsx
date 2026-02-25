@@ -15,7 +15,7 @@ export function LoginScreen({ onLogin }: LoginScreenProps) {
     setError('');
     
     try {
-      const response = await fetch('http://localhost:8000/api/auth/login', {
+      const response = await fetch('https://impakto.systems/api/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

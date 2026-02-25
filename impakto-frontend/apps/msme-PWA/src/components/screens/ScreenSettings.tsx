@@ -29,7 +29,7 @@ export function ScreenSettings({ onBack, userType }: ScreenSettingsProps) {
     const fetchProfile = async () => {
       try {
         const token = localStorage.getItem('impakto_msme_token');
-        const response = await fetch('http://localhost:8000/api/auth/profile', {
+        const response = await fetch('https://impakto.systems/api/auth/profile', {
           headers: {
             'Authorization': `Bearer ${token}`
           }
@@ -66,7 +66,7 @@ export function ScreenSettings({ onBack, userType }: ScreenSettingsProps) {
 
     try {
       const token = localStorage.getItem('impakto_msme_token');
-      const response = await fetch('http://localhost:8000/api/auth/profile', {
+      const response = await fetch('https://impakto.systems/api/auth/profile', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

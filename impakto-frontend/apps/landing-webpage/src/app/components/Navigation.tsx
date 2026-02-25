@@ -28,7 +28,7 @@ export function Navigation() {
             </div>
             
             {/* Link to MSME PWA (Update href to your future local/prod URL) */}
-            <a href="http://localhost:5174" className="inline-block">
+            <a href="https://app.impakto.systems" className="inline-block">
             <Button 
               variant="ghost" 
               className="text-slate-700 hover:text-green-600 hover:bg-blue-50"
@@ -40,7 +40,7 @@ export function Navigation() {
             </a>
             
             {/* Link to MFI Dashboard (Update href to your future local/prod URL) */}
-            <a href="http://localhost:5173" className="inline-block">
+            <a href="https://mfi.impakto.systems" className="inline-block">
             <Button 
               variant="outline" 
               className="border-blue-700 text-blue-700 hover:bg-blue-600 hover:text-white"

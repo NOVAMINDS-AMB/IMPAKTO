@@ -23,12 +23,12 @@ export function Footer() {
             <h3 className="font-bold text-white mb-4">Platform</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="#" className="text-slate-400 hover:text-blue-400 transition-colors">
+                <a href="https://app.impakto.systems" className="text-slate-400 hover:text-blue-400 transition-colors">
                   MSME Portal
                 </a>
               </li>
               <li>
-                <a href="#" className="text-slate-400 hover:text-blue-400 transition-colors">
+                <a href="https://mfi.impakto.systems" className="text-slate-400 hover:text-blue-400 transition-colors">
                   MFI Dashboard
                 </a>
               </li>

@@ -16,9 +16,9 @@ COPY tooling/ tooling/
 
 # Install dependencies and build all apps
 RUN pnpm install
-RUN pnpm --filter landing-webpage build
-RUN pnpm --filter msme-PWA build
-RUN pnpm --filter MFI-dashboard build
+RUN cd apps/landing-webpage && pnpm run build
+RUN cd apps/msme-PWA && pnpm run build
+RUN cd apps/MFI-dashboard && pnpm run build
 
 # --- Stage 2: Serve with Nginx ---
 FROM nginx:alpine

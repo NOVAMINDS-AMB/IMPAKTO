@@ -42,7 +42,7 @@ export function HeroSection() {
 
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row gap-4">
-              <a href="http://localhost:5174" className="inline-block">
+              <a href="https://app.impakto.systems" className="inline-block">
               <Button 
                 size="lg" 
                 className="bg-green-600 hover:bg-green-500 text-white group"
@@ -53,7 +53,7 @@ export function HeroSection() {
               </Button>
               </a>
               
-              <a href="http://localhost:5173" className="inline-block">
+              <a href="https://mfi.impakto.systems" className="inline-block">
               <Button 
                 size="lg" 
                 variant="outline"
