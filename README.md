@@ -2,6 +2,6 @@
 
 The financial digital infrastructure for the future of connecting the informal economy to formal capital.
 
-## Test version 1
+## Ledger feature
 
-Ready for deployment
+This branch contains the ledger model development phase.
