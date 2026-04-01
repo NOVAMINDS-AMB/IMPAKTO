@@ -14,7 +14,7 @@ export function Screen15RestockSuggestion({ onNext }: Screen15RestockSuggestionP
         <p className="text-gray-600">Based on your sales trends</p>
       </div>
 
-      <div className="flex-1 space-y-4 mb-6">
+      <div className="flex-1 space-y-4 mb-6 overflow-y-auto">
         <div className="bg-white rounded-xl p-5 border border-gray-200">
           <div className="flex items-center gap-3 mb-3">
             <div className="bg-amber-100 rounded-lg p-2">

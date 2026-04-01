@@ -9,7 +9,7 @@ interface Screen13TrustScoreProps {
 export function Screen13TrustScore({ onNext }: Screen13TrustScoreProps) {
   return (
     <MobileScreen backgroundColor="bg-gradient-to-b from-purple-50 to-white">
-      <div className="flex-1 flex flex-col justify-center items-center text-center">
+      <div className="flex-1 flex flex-col justify-center items-center text-center overflow-y-auto">
         <div className="mb-8">
           <Star className="w-12 h-12 text-purple-600 mx-auto mb-4" />
           <div className="text-7xl text-purple-600 mb-4">

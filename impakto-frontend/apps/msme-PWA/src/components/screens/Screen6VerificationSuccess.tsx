@@ -9,7 +9,7 @@ interface Screen6VerificationSuccessProps {
 export function Screen6VerificationSuccess({ onNext }: Screen6VerificationSuccessProps) {
   return (
     <MobileScreen>
-      <div className="flex-1 flex flex-col justify-center items-center text-center">
+      <div className="flex-1 flex flex-col justify-center items-center text-center overflow-y-auto">
         <div className="mb-8">
           <CheckCircle className="w-24 h-24 text-emerald-600 mx-auto" />
         </div>

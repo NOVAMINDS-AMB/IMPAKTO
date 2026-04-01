@@ -19,7 +19,7 @@ export function ScreenLogin({ onNext, onBack }: ScreenLoginProps) {
     setError('');
 
     try {
-      const response = await fetch('https://impakto.systems/api/auth/login', {
+      const response = await fetch('http://localhost:8000/api/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -54,7 +54,7 @@ export function ScreenLogin({ onNext, onBack }: ScreenLoginProps) {
       <button onClick={onBack} className="mb-6 text-gray-600 flex items-center gap-2">
         <ArrowLeft className="w-5 h-5" /> Back
       </button>
-      <div className="flex-1">
+      <div className="flex-1 overflow-y-auto">
         <div className="flex items-center gap-3 mb-8">
           <div className="bg-white-100 rounded-full p-3">
             <img 

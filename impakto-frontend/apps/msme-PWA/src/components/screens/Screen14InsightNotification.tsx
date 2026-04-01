@@ -9,7 +9,7 @@ interface Screen14InsightNotificationProps {
 export function Screen14InsightNotification({ onNext }: Screen14InsightNotificationProps) {
   return (
     <MobileScreen>
-      <div className="flex-1 flex flex-col justify-center items-center text-center">
+      <div className="flex-1 flex flex-col justify-center items-center text-center overflow-y-auto">
         <div className="mb-8 bg-yellow-100 rounded-full p-6">
           <Lightbulb className="w-16 h-16 text-yellow-600" />
         </div>

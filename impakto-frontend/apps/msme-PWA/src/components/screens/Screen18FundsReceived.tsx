@@ -9,7 +9,7 @@ interface Screen18FundsReceivedProps {
 export function Screen18FundsReceived({ onNext }: Screen18FundsReceivedProps) {
   return (
     <MobileScreen backgroundColor="bg-gradient-to-b from-emerald-50 to-white">
-      <div className="flex-1 flex flex-col justify-center items-center text-center">
+      <div className="flex-1 flex flex-col justify-center items-center text-center overflow-y-auto">
         <div className="mb-8 relative">
           <div className="bg-emerald-100 rounded-full p-6 inline-block">
             <Smartphone className="w-16 h-16 text-emerald-600" />

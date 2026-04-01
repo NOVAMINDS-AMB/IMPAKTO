@@ -30,6 +30,7 @@ import { ScreenUpdatedLedger } from './components/screens/ScreenUpdatedLedger';
 import { ScreenAISuggestions } from './components/screens/ScreenAISuggestions';
 import { ScreenTrustScoreDetail } from './components/screens/ScreenTrustScoreDetail';
 import { ScreenLoanOverview } from './components/screens/ScreenLoanOverview';
+import { Loan, LoanEligibility } from './lib/loans';
 
 type AppScreen = 
   | 'landing' 
@@ -71,6 +72,8 @@ export default function App() {
   const [userType, setUserType] = useState<UserType>('new');
   const [loginUsername, setLoginUsername] = useState('');
   const [isAddingNewEntry, setIsAddingNewEntry] = useState(false);
+  const [selectedEligibility, setSelectedEligibility] = useState<LoanEligibility | null>(null);
+  const [selectedLoan, setSelectedLoan] = useState<Loan | null>(null);
 
   const navigateTo = (screen: AppScreen) => {
     setCurrentScreen(screen);
@@ -121,7 +124,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
-      <div className="w-full max-w-sm bg-white rounded-3xl shadow-xl overflow-hidden" style={{ minHeight: '667px', maxHeight: '844px' }}>
+      <div className="w-full max-w-sm bg-white rounded-3xl shadow-xl overflow-hidden flex flex-col" style={{ height: '100vh', minHeight: '667px', maxHeight: '844px' }}>
         {/* Landing & Auth Screens */}
         {currentScreen === 'landing' && (
           <Screen1Landing onNext={handleGetStarted} onLogin={handleLogin} />
@@ -236,10 +239,14 @@ export default function App() {
         {currentScreen === 'loan-overview' && (
           <ScreenLoanOverview
             onBack={() => navigateTo('main-dashboard')}
-            onApplyNewLoan={() => navigateTo('loan-review')}
-            onViewRepayment={() => navigateTo('repayment')}
-            hasActiveLoan={hasActiveLoan}
-            isNewUser={isNewUser}
+            onApplyNewLoan={(eligibility) => {
+              setSelectedEligibility(eligibility);
+              navigateTo('loan-review');
+            }}
+            onViewRepayment={(loan) => {
+              setSelectedLoan(loan);
+              navigateTo('repayment');
+            }}
           />
         )}
 
@@ -265,7 +272,14 @@ export default function App() {
 
         {/* Loan Process */}
         {currentScreen === 'loan-review' && (
-          <Screen16LoanReview onNext={() => navigateTo('loan-approval')} />
+          <Screen16LoanReview 
+            eligibility={selectedEligibility}
+            onNext={(loan) => {
+              setSelectedLoan(loan);
+              navigateTo('loan-approval');
+            }} 
+            onBack={() => navigateTo('loan-overview')}
+          />
         )}
         {currentScreen === 'loan-approval' && (
           <Screen17LoanApproval onNext={() => navigateTo('funds-received')} />
@@ -283,7 +297,14 @@ export default function App() {
           />
         )}
         {currentScreen === 'repayment' && (
-          <Screen20Repayment onNext={() => navigateTo('repayment-success')} />
+          <Screen20Repayment 
+            loan={selectedLoan}
+            onNext={(updatedLoan) => {
+              setSelectedLoan(updatedLoan);
+              navigateTo('repayment-success');
+            }} 
+            onBack={() => navigateTo('outstanding-loan')}
+          />
         )}
         {currentScreen === 'repayment-success' && (
           <Screen21RepaymentSuccess 

@@ -14,7 +14,7 @@ export function Screen10Dashboard({ onNext }: Screen10DashboardProps) {
         <p className="text-gray-600">Overview of your activity</p>
       </div>
 
-      <div className="flex-1 space-y-4 mb-6">
+      <div className="flex-1 space-y-4 mb-6 overflow-y-auto">
         <div className="bg-white rounded-xl p-5 border border-gray-200">
           <div className="flex items-center gap-3 mb-2">
             <div className="bg-emerald-100 rounded-lg p-2">

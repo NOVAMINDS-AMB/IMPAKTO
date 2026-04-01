@@ -7,16 +7,38 @@ import datetime
 from django.conf import settings
 from ninja.security import HttpBearer
 from django.shortcuts import get_object_or_404
+from ninja import File
+from ninja.files import UploadedFile
+from .kyc_service import extract_id_data, match_faces
 
 router = Router()
 
 # --- Security: JWT Bearer Token Authenticator ---
 class AuthBearer(HttpBearer):
     def authenticate(self, request, token):
+        if token in ["null", "undefined", ""]:
+            print("🛑 AUTH FAILED: Frontend sent an empty or 'null' token string.")
+            return None
+            
         try:
             payload = jwt.decode(token, settings.SECRET_KEY, algorithms=['HS256'])
-            return get_object_or_404(User, id=payload['user_id'])
-        except (jwt.ExpiredSignatureError, jwt.DecodeError):
+            user_id = payload.get('user_id')
+            print(f"✅ TOKEN DECODED: Looking for user_id -> {user_id}")
+            
+            user = User.objects.filter(id=user_id).first()
+            
+            if user:
+                print(f"🎉 USER FOUND: Welcome {user.username}")
+                return user
+            else:
+                print("🛑 AUTH FAILED: Token is valid, but this user does NOT exist in the local database!")
+                return None
+                
+        except jwt.ExpiredSignatureError:
+            print("🛑 AUTH FAILED: Token has expired.")
+            return None
+        except jwt.DecodeError:
+            print("🛑 AUTH FAILED: Token signature is invalid. (Likely a SECRET_KEY mismatch).")
             return None
 
 # --- Profile Endpoints ---
@@ -145,3 +167,39 @@ def signup(request, data: MSMESignupRequest):
 
     except Exception as e:
         return 400, {"detail": "Failed to create account. Please check your information."}
+    
+@router.post("/kyc/extract-id", response={200: dict, 400: dict}, auth=AuthBearer())
+def kyc_extract_id(request, file: UploadedFile = File(...)):
+    """
+    Receives an ID card image, passes it to Gemini for OCR, 
+    and returns the extracted identity details.
+    """
+    try:
+        image_bytes = file.read()
+        
+        # Pass to the AI brain
+        kyc_data = extract_id_data(image_bytes)
+        
+        # Here, we could cross-reference kyc_data['first_name'] with request.auth.first_name
+        # to ensure the ID matches the person who created the account.
+        
+        return 200, kyc_data
+        
+    except Exception as e:
+        return 400, {"detail": str(e)}
+    
+@router.post("/kyc/match-faces", response={200: dict, 400: dict}, auth=AuthBearer())
+def kyc_match_faces(request, id_image: UploadedFile = File(...), selfie_image: UploadedFile = File(...)):
+    """
+    Receives the ID photo and the Selfie photo, compares them, 
+    and returns the biometric match confidence.
+    """
+    try:
+        id_bytes = id_image.read()
+        selfie_bytes = selfie_image.read()
+        
+        match_result = match_faces(id_bytes, selfie_bytes)
+        return 200, match_result
+        
+    except Exception as e:
+        return 400, {"detail": str(e)}   

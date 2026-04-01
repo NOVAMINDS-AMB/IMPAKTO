@@ -1,11 +1,11 @@
 import { MobileScreen } from '../MobileScreen';
-import { 
-  Camera, 
-  TrendingUp, 
-  TrendingDown, 
-  Wallet, 
-  Award, 
-  Lightbulb, 
+import {
+  Camera,
+  TrendingUp,
+  TrendingDown,
+  Wallet,
+  Award,
+  Lightbulb,
   DollarSign,
   ChevronRight,
   Sprout,
@@ -13,7 +13,8 @@ import {
   Settings,
   LogOut
 } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { ledgerService, TransactionResponse } from '../../lib/ledger';
 
 interface ScreenMainDashboardProps {
   isNewUser: boolean;
@@ -26,9 +27,9 @@ interface ScreenMainDashboardProps {
   onSettings: () => void;
 }
 
-export function ScreenMainDashboard({ 
-  isNewUser, 
-  onScanLedger, 
+export function ScreenMainDashboard({
+  isNewUser,
+  onScanLedger,
   onViewLedger,
   onViewTrustScore,
   onViewAISuggestions,
@@ -37,6 +38,55 @@ export function ScreenMainDashboard({
   onSettings
 }: ScreenMainDashboardProps) {
   const [showUserMenu, setShowUserMenu] = useState(false);
+  const [transactions, setTransactions] = useState<TransactionResponse[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    const fetchHistory = async () => {
+      try {
+        setIsLoading(true);
+        const data = await ledgerService.getTransactions();
+        setTransactions(data.reverse());
+      } catch (err) {
+        setError('Failed to load ledger records.');
+        console.error(err);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    if (!isNewUser) {
+      fetchHistory();
+    } else {
+      setIsLoading(false);
+    }
+  }, [isNewUser]);
+
+  const totalSales = transactions
+    .filter(t => t.transaction_type === 'INCOME')
+    .reduce((sum, t) => sum + (typeof t.amount === 'string' ? parseFloat(t.amount) : t.amount), 0);
+  const totalExpenses = transactions
+    .filter(t => t.transaction_type === 'EXPENSE')
+    .reduce((sum, t) => sum + (typeof t.amount === 'string' ? parseFloat(t.amount) : t.amount), 0);
+  const currentBalance = totalSales - totalExpenses;
+
+  const formatCurrency = (amount: number) => {
+    return new Intl.NumberFormat('en-KE', {
+      style: 'currency',
+      currency: 'KES',
+      minimumFractionDigits: 0
+    }).format(amount).replace('KES', 'Kshs');
+  };
+
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+  };
+
+  const recentTransactions = [...transactions]
+    .sort((a, b) => new Date(b.transaction_date).getTime() - new Date(a.transaction_date).getTime())
+    .slice(0, 3);
 
   return (
     <MobileScreen backgroundColor="bg-gray-50">
@@ -44,10 +94,10 @@ export function ScreenMainDashboard({
       <div className="mb-6 flex items-center justify-between relative">
         <div>
           <div className="flex items-center gap-2 mb-1">
-             <img 
-            src="/Impakto Official Logo.jpeg" 
-            alt="Impakto logo" 
-            className="w-8 h-8 object-contain" 
+            <img
+              src="/Impakto Official Logo.jpeg"
+              alt="Impakto logo"
+              className="w-8 h-8 object-contain"
             />
             <h1 className="text-xl text-gray-900 font-bold">Impakto</h1>
           </div>
@@ -93,7 +143,7 @@ export function ScreenMainDashboard({
         {/* Overview of Activities */}
         <div className="bg-white rounded-xl p-4 border border-gray-200">
           <h3 className="font-semibold text-gray-900 mb-3">Business Overview</h3>
-          
+
           <div className="space-y-3">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
@@ -103,7 +153,7 @@ export function ScreenMainDashboard({
                 <span className="text-gray-600 text-sm">Total Sales</span>
               </div>
               <p className="text-xl font-semibold text-gray-900">
-                {isNewUser ? 'Kshs 0' : 'Kshs 12,500'}
+                {isNewUser ? 'Kshs 0' : formatCurrency(totalSales)}
               </p>
             </div>
 
@@ -115,7 +165,7 @@ export function ScreenMainDashboard({
                 <span className="text-gray-600 text-sm">Total Expenses</span>
               </div>
               <p className="text-xl font-semibold text-gray-900">
-                {isNewUser ? 'Kshs 0' : 'Kshs 7,800'}
+                {isNewUser ? 'Kshs 0' : formatCurrency(totalExpenses)}
               </p>
             </div>
 
@@ -127,11 +177,47 @@ export function ScreenMainDashboard({
                 <span className="text-gray-600 text-sm">Current Balance</span>
               </div>
               <p className="text-xl font-semibold text-gray-900">
-                {isNewUser ? 'Kshs 0' : 'Kshs 4,700'}
+                {isNewUser ? 'Kshs 0' : formatCurrency(currentBalance)}
               </p>
             </div>
           </div>
         </div>
+
+        {/* Recent Transactions List */}
+        {!isNewUser && recentTransactions.length > 0 && (
+          <div className="bg-white rounded-xl p-4 border border-gray-200">
+            <div className="flex items-center justify-between mb-3">
+              <h3 className="font-semibold text-gray-900">Recent Transactions</h3>
+              <button onClick={onViewLedger} className="text-sm text-emerald-600 hover:text-emerald-700 font-medium">
+                View all
+              </button>
+            </div>
+            <div className="space-y-3">
+              {recentTransactions.map((tx) => (
+                <div key={tx.id} className="flex items-center justify-between py-2 border-b border-gray-100 last:border-0 last:pb-0">
+                  <div className="flex items-center gap-3">
+                    {tx.transaction_type === 'INCOME' ? (
+                      <div className="bg-emerald-100 p-2 rounded-lg">
+                        <TrendingUp className="w-4 h-4 text-emerald-600" />
+                      </div>
+                    ) : (
+                      <div className="bg-red-100 p-2 rounded-lg">
+                        <TrendingDown className="w-4 h-4 text-red-600" />
+                      </div>
+                    )}
+                    <div>
+                      <p className="text-sm font-medium text-gray-900">{tx.description || tx.category}</p>
+                      <p className="text-xs text-gray-500">{formatDate(tx.transaction_date)}</p>
+                    </div>
+                  </div>
+                  <span className={`text-sm font-semibold ${tx.transaction_type === 'INCOME' ? 'text-emerald-600' : 'text-gray-900'}`}>
+                    {tx.transaction_type === 'INCOME' ? '+' : '-'}{formatCurrency(tx.amount)}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Ledger Scanning Feature */}
         <button
@@ -146,8 +232,8 @@ export function ScreenMainDashboard({
               <div>
                 <h3 className="font-semibold text-gray-900">Ledger Records</h3>
                 <p className="text-sm text-gray-600">
-                  {isNewUser 
-                    ? 'Scan your first ledger to get started' 
+                  {isNewUser
+                    ? 'Scan your first ledger to get started'
                     : 'View records or add new entries'}
                 </p>
               </div>
@@ -169,8 +255,8 @@ export function ScreenMainDashboard({
               <div>
                 <h3 className="font-semibold text-gray-900">Trust Score</h3>
                 <p className="text-sm text-gray-600">
-                  {isNewUser 
-                    ? 'Build your score with ledger entries' 
+                  {isNewUser
+                    ? 'Build your score with ledger entries'
                     : 'View your current trust score'}
                 </p>
               </div>
@@ -192,8 +278,8 @@ export function ScreenMainDashboard({
               <div>
                 <h3 className="font-semibold text-gray-900">AI Suggestions</h3>
                 <p className="text-sm text-gray-600">
-                  {isNewUser 
-                    ? 'Available after a few ledger entries' 
+                  {isNewUser
+                    ? 'Available after a few ledger entries'
                     : 'Get personalized business insights'}
                 </p>
               </div>
@@ -215,8 +301,8 @@ export function ScreenMainDashboard({
               <div>
                 <h3 className="font-semibold text-white">Loan Services</h3>
                 <p className="text-sm text-emerald-100">
-                  {isNewUser 
-                    ? 'Access capital for your business' 
+                  {isNewUser
+                    ? 'Access capital for your business'
                     : 'View status or apply for new loan'}
                 </p>
               </div>

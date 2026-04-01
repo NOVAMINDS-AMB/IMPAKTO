@@ -10,7 +10,7 @@ interface Screen1LandingProps {
 export function Screen1Landing({ onNext, onLogin }: Screen1LandingProps) {
   return (
     <MobileScreen>
-      <div className="flex-1 flex flex-col justify-center items-center text-center">
+      <div className="flex-1 flex flex-col justify-center items-center text-center overflow-y-auto">
         <div className="mb-5 bg-white-100 rounded-full p-6 flex items-center justify-center">
            <img 
             src="/Impakto Official Logo.jpeg" 

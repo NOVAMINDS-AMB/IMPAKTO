@@ -9,7 +9,7 @@ interface Screen12TrustNotificationProps {
 export function Screen12TrustNotification({ onNext }: Screen12TrustNotificationProps) {
   return (
     <MobileScreen>
-      <div className="flex-1 flex flex-col justify-center items-center text-center">
+      <div className="flex-1 flex flex-col justify-center items-center text-center overflow-y-auto">
         <div className="mb-8 bg-purple-100 rounded-full p-6">
           <Star className="w-16 h-16 text-purple-600" />
         </div>

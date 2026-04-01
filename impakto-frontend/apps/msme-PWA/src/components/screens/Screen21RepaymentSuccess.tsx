@@ -10,7 +10,7 @@ interface Screen21RepaymentSuccessProps {
 export function Screen21RepaymentSuccess({ onReset, onGoToDashboard }: Screen21RepaymentSuccessProps) {
   return (
     <MobileScreen>
-      <div className="flex-1 flex flex-col items-center justify-center text-center px-4">
+      <div className="flex-1 flex flex-col items-center justify-center text-center px-4 overflow-y-auto">
         <div className="bg-emerald-100 rounded-full p-6 mb-6">
           <CheckCircle2 className="w-20 h-20 text-emerald-600" />
         </div>

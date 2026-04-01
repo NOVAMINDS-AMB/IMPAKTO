@@ -9,7 +9,7 @@ interface Screen11AddMoreProps {
 export function Screen11AddMore({ onNext }: Screen11AddMoreProps) {
   return (
     <MobileScreen>
-      <div className="flex-1 flex flex-col justify-center items-center text-center">
+      <div className="flex-1 flex flex-col justify-center items-center text-center overflow-y-auto">
         <div className="mb-8 bg-amber-100 rounded-full p-6">
           <BookOpen className="w-16 h-16 text-amber-600" />
         </div>

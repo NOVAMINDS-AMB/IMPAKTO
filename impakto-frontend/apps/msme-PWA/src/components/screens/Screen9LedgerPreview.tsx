@@ -16,7 +16,7 @@ export function Screen9LedgerPreview({ onNext }: Screen9LedgerPreviewProps) {
         </div>
       </div>
 
-      <div className="flex-1 bg-gray-50 rounded-xl p-4 mb-6">
+      <div className="flex-1 bg-gray-50 rounded-xl p-4 mb-6 overflow-y-auto">
         <div className="bg-white rounded-lg overflow-hidden border border-gray-200">
           <table className="w-full text-sm">
             <thead className="bg-gray-100">

@@ -10,7 +10,7 @@ interface Screen19OutstandingLoanProps {
 export function Screen19OutstandingLoan({ onNext, onGoToDashboard }: Screen19OutstandingLoanProps) {
   return (
     <MobileScreen>
-      <div className="flex-1">
+      <div className="flex-1 overflow-y-auto">
         <h2 className="text-2xl mb-2 text-gray-900">Your Loan</h2>
         <p className="text-gray-600 mb-8">View your loan details</p>
 

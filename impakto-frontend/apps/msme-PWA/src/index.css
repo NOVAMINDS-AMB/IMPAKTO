@@ -1572,3 +1572,9 @@ html {
     transform: rotate(360deg);
   }
 }
+
+@layer utilities {
+  .flex-1.overflow-y-auto {
+    min-height: 0;
+  }
+}

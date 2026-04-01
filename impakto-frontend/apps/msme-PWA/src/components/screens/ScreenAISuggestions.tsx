@@ -20,7 +20,7 @@ export function ScreenAISuggestions({ onBack, onGetStockCapital, isNewUser }: Sc
           Back to Dashboard
         </button>
 
-        <div className="flex-1 flex flex-col items-center justify-center text-center">
+        <div className="flex-1 flex flex-col items-center justify-center text-center overflow-y-auto">
           <div className="bg-cyan-100 rounded-full p-6 mb-6">
             <Lightbulb className="w-16 h-16 text-cyan-600" />
           </div>
@@ -59,7 +59,7 @@ export function ScreenAISuggestions({ onBack, onGetStockCapital, isNewUser }: Sc
             <div className="bg-white/20 rounded-lg p-2">
               <DollarSign className="w-5 h-5" />
             </div>
-            <div className="flex-1">
+            <div className="flex-1 overflow-y-auto">
               <h3 className="font-semibold mb-1">Get Stock Capital</h3>
               <p className="text-sm text-emerald-50">
                 Based on your sales patterns, you could benefit from additional capital to increase your inventory

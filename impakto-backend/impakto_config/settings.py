@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'consent',
     'ledger',
     'scoring',
+    'loans',
 ]
 
 MIDDLEWARE = [
@@ -84,9 +85,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': os.environ.get('POSTGRES_DB', 'impakto_db'),
         'USER': os.environ.get('POSTGRES_USER', 'postgres'),
-        'PASSWORD': os.environ.get('POSTGRES_PASSWORD', 'impaktoadmin'),
+        'PASSWORD': os.environ.get('POSTGRES_PASSWORD', 'postgres'),
         'HOST': os.environ.get('POSTGRES_HOST', 'localhost'),
-        'PORT': os.environ.get('POSTGRES_PORT', '5432'),
+        'PORT': os.environ.get('POSTGRES_PORT', '5454'),
     }
 }
 
@@ -138,3 +139,5 @@ CORS_ALLOWED_ORIGINS = [
     "https://app.impakto.systems",
     "https://mfi.impakto.systems",
 ]
+
+GROQ_API_KEY = os.environ.get("GROQ_API_KEY", "")

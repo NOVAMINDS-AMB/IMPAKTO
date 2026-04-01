@@ -31,7 +31,7 @@ export function ScreenLogin2FA({ onNext, onBack, username }: ScreenLogin2FAProps
       <button onClick={onBack} className="mb-6 text-gray-600 flex items-center gap-2">
         <ArrowLeft className="w-5 h-5" /> Back
       </button>
-      <div className="flex-1">
+      <div className="flex-1 overflow-y-auto">
         <div className="flex items-center gap-3 mb-8">
           <div className="bg-white-100 rounded-full p-3">
             <img 
