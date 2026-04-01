@@ -1,29 +1,45 @@
 import { MobileScreen } from '../MobileScreen';
 import { PrimaryButton } from '../PrimaryButton';
 import { Smartphone } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { loansService, Loan } from '../../lib/loans';
 
 interface Screen20RepaymentProps {
   loan: Loan | null;
-  onNext: (updatedLoan: Loan) => void;
+  onNext: (updatedLoan: Loan, amountPaid: number) => void;
   onBack: () => void;
 }
 
 export function Screen20Repayment({ loan, onNext, onBack }: Screen20RepaymentProps) {
   const [pin, setPin] = useState('');
+  const [amountStr, setAmountStr] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  useEffect(() => {
+    if (loan) {
+      setAmountStr(Math.min(1000, loan.outstanding_balance).toString());
+    }
+  }, [loan]);
+
   const handleRepay = async () => {
     if (!loan || !pin) return;
+    const amount = parseFloat(amountStr);
+    
+    if (isNaN(amount) || amount <= 0) {
+      setError('Please enter a valid amount');
+      return;
+    }
+    if (amount > loan.outstanding_balance) {
+      setError(`Amount cannot exceed outstanding balance of Kshs ${loan.outstanding_balance.toLocaleString()}`);
+      return;
+    }
+
     try {
       setLoading(true);
       setError(null);
-      // Use minimum of hardcoded 1000 or outstanding balance for demo
-      const amount = Math.min(1000, loan.outstanding_balance);
       const updatedLoan = await loansService.repayLoan(loan.id, amount);
-      onNext(updatedLoan);
+      onNext(updatedLoan, amount);
     } catch (err: any) {
       setError(err.message || 'Repayment failed');
     } finally {
@@ -44,14 +60,19 @@ export function Screen20Repayment({ loan, onNext, onBack }: Screen20RepaymentPro
     <MobileScreen>
       <div className="mb-6">
         <h2 className="text-2xl mb-2 text-gray-900">Confirm Repayment</h2>
-        <p className="text-gray-600">Enter your mobile money PIN</p>
+        <p className="text-gray-600">Enter payment details</p>
       </div>
 
       <div className="flex-1 overflow-y-auto">
         <div className="bg-gray-50 rounded-xl p-6 mb-6 text-center">
           <Smartphone className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-          <p className="text-gray-600 mb-2">Amount to Pay</p>
-          <p className="text-4xl text-gray-900">Kshs {Math.min(1000, loan.outstanding_balance).toLocaleString()}</p>
+          <p className="text-gray-600 mb-2">Amount to Pay (Kshs)</p>
+          <input
+            type="number"
+            value={amountStr}
+            onChange={(e) => setAmountStr(e.target.value)}
+            className="w-full bg-transparent text-center focus:outline-none text-4xl text-gray-900 border-b-2 border-emerald-500 pb-2"
+          />
         </div>
 
         <div>
@@ -69,7 +90,7 @@ export function Screen20Repayment({ loan, onNext, onBack }: Screen20RepaymentPro
       </div>
 
       <div className="mt-auto">
-        <PrimaryButton onClick={handleRepay} disabled={loading || pin.length < 4}>
+        <PrimaryButton onClick={handleRepay} disabled={loading || pin.length < 4 || !amountStr}>
           {loading ? 'Processing...' : 'Confirm Repayment'}
         </PrimaryButton>
       </div>

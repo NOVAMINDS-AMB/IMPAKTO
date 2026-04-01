@@ -1,13 +1,27 @@
 import { MobileScreen } from '../MobileScreen';
 import { PrimaryButton } from '../PrimaryButton';
 import { CheckCircle2, TrendingUp } from 'lucide-react';
+import { Loan } from '../../lib/loans';
 
 interface Screen21RepaymentSuccessProps {
+  loan: Loan | null;
+  amountPaid: number;
   onReset: () => void;
   onGoToDashboard: () => void;
 }
 
-export function Screen21RepaymentSuccess({ onReset, onGoToDashboard }: Screen21RepaymentSuccessProps) {
+export function Screen21RepaymentSuccess({ loan, amountPaid, onReset, onGoToDashboard }: Screen21RepaymentSuccessProps) {
+  
+  const formatDate = (dateString: string | null | undefined) => {
+    if (!dateString) return 'N/A';
+    try {
+      const date = new Date(dateString);
+      return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+    } catch {
+      return 'N/A';
+    }
+  };
+
   return (
     <MobileScreen>
       <div className="flex-1 flex flex-col items-center justify-center text-center px-4 overflow-y-auto">
@@ -28,16 +42,23 @@ export function Screen21RepaymentSuccess({ onReset, onGoToDashboard }: Screen21R
           <div className="space-y-3">
             <div className="flex items-center justify-between">
               <span className="text-gray-600">Amount Paid</span>
-              <span className="font-semibold text-gray-900 text-lg">Kshs 1,000</span>
+              <span className="font-semibold text-gray-900 text-lg">Kshs {amountPaid.toLocaleString()}</span>
             </div>
             <div className="flex items-center justify-between">
               <span className="text-gray-600">Remaining Balance</span>
-              <span className="font-semibold text-gray-900 text-lg">Kshs 4,000</span>
+              <span className="font-semibold text-gray-900 text-lg">Kshs {loan?.outstanding_balance?.toLocaleString() || '0'}</span>
             </div>
-            <div className="flex items-center justify-between">
-              <span className="text-gray-600">Next Payment Due</span>
-              <span className="font-semibold text-gray-900">Feb 22, 2026</span>
-            </div>
+            {(loan?.outstanding_balance ?? 0) > 0 ? (
+              <div className="flex items-center justify-between">
+                <span className="text-gray-600">Next Payment Due</span>
+                <span className="font-semibold text-gray-900">{formatDate(loan?.due_date)}</span>
+              </div>
+            ) : (
+              <div className="flex items-center justify-between">
+                <span className="text-gray-600">Status</span>
+                <span className="font-semibold text-emerald-600 text-lg">Fully Paid</span>
+              </div>
+            )}
           </div>
         </div>
 

@@ -1,7 +1,0 @@
-import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
-import { MobileScreen } from '../MobileScreen';
-import { PrimaryButton } from '../PrimaryButton';
-import { Smartphone, CheckCircle } from 'lucide-react';
-export function Screen18FundsReceived({ onNext }) {
-    return (_jsxs(MobileScreen, { backgroundColor: "bg-gradient-to-b from-emerald-50 to-white", children: [_jsxs("div", { className: "flex-1 flex flex-col justify-center items-center text-center overflow-y-auto", children: [_jsxs("div", { className: "mb-8 relative", children: [_jsx("div", { className: "bg-emerald-100 rounded-full p-6 inline-block", children: _jsx(Smartphone, { className: "w-16 h-16 text-emerald-600" }) }), _jsx("div", { className: "absolute -top-2 -right-2 bg-emerald-600 rounded-full p-1", children: _jsx(CheckCircle, { className: "w-6 h-6 text-white" }) })] }), _jsx("h2", { className: "text-2xl mb-4 text-gray-900", children: "Funds sent to your mobile money" }), _jsxs("div", { className: "bg-white rounded-xl p-6 border border-gray-200 mb-6", children: [_jsx("p", { className: "text-gray-600 mb-2", children: "Amount Received" }), _jsx("p", { className: "text-4xl text-emerald-600", children: "Kshs 200" })] }), _jsx("p", { className: "text-gray-600", children: "Check your mobile money account" })] }), _jsx("div", { className: "mt-auto", children: _jsx(PrimaryButton, { onClick: onNext, children: "Go to Dashboard" }) })] }));
-}

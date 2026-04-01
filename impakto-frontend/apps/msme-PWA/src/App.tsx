@@ -74,6 +74,7 @@ export default function App() {
   const [isAddingNewEntry, setIsAddingNewEntry] = useState(false);
   const [selectedEligibility, setSelectedEligibility] = useState<LoanEligibility | null>(null);
   const [selectedLoan, setSelectedLoan] = useState<Loan | null>(null);
+  const [lastAmountPaid, setLastAmountPaid] = useState<number>(0);
 
   const navigateTo = (screen: AppScreen) => {
     setCurrentScreen(screen);
@@ -299,8 +300,9 @@ export default function App() {
         {currentScreen === 'repayment' && (
           <Screen20Repayment 
             loan={selectedLoan}
-            onNext={(updatedLoan) => {
+            onNext={(updatedLoan, amountPaid) => {
               setSelectedLoan(updatedLoan);
+              setLastAmountPaid(amountPaid);
               navigateTo('repayment-success');
             }} 
             onBack={() => navigateTo('outstanding-loan')}
@@ -308,6 +310,8 @@ export default function App() {
         )}
         {currentScreen === 'repayment-success' && (
           <Screen21RepaymentSuccess 
+            loan={selectedLoan}
+            amountPaid={lastAmountPaid}
             onReset={resetFlow}
             onGoToDashboard={() => navigateTo('main-dashboard')}
           />
