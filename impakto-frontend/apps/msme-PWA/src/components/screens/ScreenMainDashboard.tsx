@@ -56,12 +56,8 @@ export function ScreenMainDashboard({
       }
     };
 
-    if (!isNewUser) {
-      fetchHistory();
-    } else {
-      setIsLoading(false);
-    }
-  }, [isNewUser]);
+    fetchHistory();
+  }, []);
 
   const totalSales = transactions
     .filter(t => t.transaction_type === 'INCOME')
@@ -87,6 +83,11 @@ export function ScreenMainDashboard({
   const recentTransactions = [...transactions]
     .sort((a, b) => new Date(b.transaction_date).getTime() - new Date(a.transaction_date).getTime())
     .slice(0, 3);
+
+  const hasRecords = transactions.length > 0;
+  // A user is functionally "new" if they have the new userType and 0 records.
+  // If they have records, they should see the populated dashboard tools.
+  const showEmptyState = isNewUser && !hasRecords;
 
   return (
     <MobileScreen backgroundColor="bg-gray-50">
@@ -153,7 +154,7 @@ export function ScreenMainDashboard({
                 <span className="text-gray-600 text-sm">Total Sales</span>
               </div>
               <p className="text-xl font-semibold text-gray-900">
-                {isNewUser ? 'Kshs 0' : formatCurrency(totalSales)}
+                {formatCurrency(totalSales)}
               </p>
             </div>
 
@@ -165,7 +166,7 @@ export function ScreenMainDashboard({
                 <span className="text-gray-600 text-sm">Total Expenses</span>
               </div>
               <p className="text-xl font-semibold text-gray-900">
-                {isNewUser ? 'Kshs 0' : formatCurrency(totalExpenses)}
+                {formatCurrency(totalExpenses)}
               </p>
             </div>
 
@@ -177,14 +178,14 @@ export function ScreenMainDashboard({
                 <span className="text-gray-600 text-sm">Current Balance</span>
               </div>
               <p className="text-xl font-semibold text-gray-900">
-                {isNewUser ? 'Kshs 0' : formatCurrency(currentBalance)}
+                {formatCurrency(currentBalance)}
               </p>
             </div>
           </div>
         </div>
 
         {/* Recent Transactions List */}
-        {!isNewUser && recentTransactions.length > 0 && (
+        {recentTransactions.length > 0 && (
           <div className="bg-white rounded-xl p-4 border border-gray-200">
             <div className="flex items-center justify-between mb-3">
               <h3 className="font-semibold text-gray-900">Recent Transactions</h3>
@@ -221,7 +222,7 @@ export function ScreenMainDashboard({
 
         {/* Ledger Scanning Feature */}
         <button
-          onClick={isNewUser ? onScanLedger : onViewLedger}
+          onClick={showEmptyState ? onScanLedger : onViewLedger}
           className="w-full bg-white rounded-xl p-4 border border-gray-200 text-left hover:bg-gray-50 transition-colors"
         >
           <div className="flex items-center justify-between">
@@ -232,7 +233,7 @@ export function ScreenMainDashboard({
               <div>
                 <h3 className="font-semibold text-gray-900">Ledger Records</h3>
                 <p className="text-sm text-gray-600">
-                  {isNewUser
+                  {showEmptyState
                     ? 'Scan your first ledger to get started'
                     : 'View records or add new entries'}
                 </p>
@@ -255,7 +256,7 @@ export function ScreenMainDashboard({
               <div>
                 <h3 className="font-semibold text-gray-900">Trust Score</h3>
                 <p className="text-sm text-gray-600">
-                  {isNewUser
+                  {showEmptyState
                     ? 'Build your score with ledger entries'
                     : 'View your current trust score'}
                 </p>
@@ -278,7 +279,7 @@ export function ScreenMainDashboard({
               <div>
                 <h3 className="font-semibold text-gray-900">AI Suggestions</h3>
                 <p className="text-sm text-gray-600">
-                  {isNewUser
+                  {showEmptyState
                     ? 'Available after a few ledger entries'
                     : 'Get personalized business insights'}
                 </p>
@@ -301,7 +302,7 @@ export function ScreenMainDashboard({
               <div>
                 <h3 className="font-semibold text-white">Loan Services</h3>
                 <p className="text-sm text-emerald-100">
-                  {isNewUser
+                  {showEmptyState
                     ? 'Access capital for your business'
                     : 'View status or apply for new loan'}
                 </p>

@@ -9,7 +9,6 @@ import { Screen5CaptureSelfie } from './components/screens/Screen5CaptureSelfie'
 import { Screen6VerificationSuccess } from './components/screens/Screen6VerificationSuccess';
 import { Screen7LedgerIntro } from './components/screens/Screen7LedgerIntro';
 import { Screen8CaptureLedger } from './components/screens/Screen8CaptureLedger';
-import { Screen9LedgerPreview } from './components/screens/Screen9LedgerPreview';
 import { Screen10Dashboard } from './components/screens/Screen10Dashboard';
 import { Screen11AddMore } from './components/screens/Screen11AddMore';
 import { Screen12TrustNotification } from './components/screens/Screen12TrustNotification';
@@ -46,7 +45,6 @@ type AppScreen =
   | 'ledger-intro'
   | 'ledger-records'
   | 'capture-ledger'
-  | 'ledger-preview'
   | 'digitized-entry'
   | 'updated-ledger'
   | 'old-dashboard'
@@ -180,28 +178,19 @@ export default function App() {
           <Screen7LedgerIntro onNext={() => navigateTo('capture-ledger')} />
         )}
         {currentScreen === 'capture-ledger' && (
-          <Screen8CaptureLedger onNext={() => {
-            if (isAddingNewEntry) {
-              navigateTo('digitized-entry');
-            } else {
-              navigateTo('ledger-preview');
-            }
-          }} />
+          <Screen8CaptureLedger onNext={() => navigateTo('digitized-entry')} />
         )}
-        {currentScreen === 'ledger-preview' && (
-          <Screen9LedgerPreview onNext={() => {
-            // After viewing records, direct to ledger entries (for new users)
-            if (isNewUser) {
+        {/* Digitized Entry Flow */}
+        {currentScreen === 'digitized-entry' && (
+          <ScreenDigitizedEntry onNext={() => {
+            if (isAddingNewEntry) {
+              navigateTo('updated-ledger');
+            } else if (isNewUser) {
               navigateTo('ledger-records');
             } else {
               navigateTo('old-dashboard');
             }
           }} />
-        )}
-
-        {/* Digitized Entry Flow */}
-        {currentScreen === 'digitized-entry' && (
-          <ScreenDigitizedEntry onNext={() => navigateTo('updated-ledger')} />
         )}
 
         {currentScreen === 'updated-ledger' && (
