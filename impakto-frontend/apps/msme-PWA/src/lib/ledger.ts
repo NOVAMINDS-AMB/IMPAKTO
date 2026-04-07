@@ -35,7 +35,7 @@ export const ledgerService = {
    * Upload an image of a ledger to the Impakto AI for extraction.
    * Returns the structured JSON data without saving it to the database yet.
    */
-  async digitizeImage(file: File): Promise<TransactionData> {
+  async digitizeImage(file: File): Promise<TransactionData[]> {
     const formData = new FormData();
     formData.append('file', file); // 'file' must match the parameter name in your Django api.py
 

@@ -23,15 +23,17 @@ def extract_ledger_data(image_bytes):
     prompt = """
     You are an expert financial data extraction AI for a microfinance application in Kenya. 
     Analyze the provided image of a handwritten or physical ledger. 
-    Extract the most recent or most prominent transaction and return it STRICTLY using this JSON schema:
+    Extract ALL visible transactions and return them STRICTLY as a JSON array where each object follows this schema:
     
-    {
-      "amount": (number, the monetary value extracted, e.g. 1500.00),
-      "transaction_type": (string, MUST be exactly "INCOME" or "EXPENSE"),
-      "category": (string, e.g. "SALES", "TRANSPORT", "STOCK", "WAGES"),
-      "transaction_date": (string, format YYYY-MM-DD. If no date is visible, estimate today's date),
-      "description": (string, a brief summary of the item, e.g. "Maize - 10kg bags")
-    }
+    [
+      {
+        "amount": (number, the monetary value extracted, e.g. 1500.00),
+        "transaction_type": (string, MUST be exactly "INCOME" or "EXPENSE"),
+        "category": (string, e.g. "SALES", "TRANSPORT", "STOCK", "WAGES"),
+        "transaction_date": (string, format YYYY-MM-DD. If no date is visible, estimate today's date),
+        "description": (string, a brief summary of the item, e.g. "Maize - 10kg bags")
+      }
+    ]
     """
     
     try:
@@ -55,9 +57,9 @@ def extract_ledger_data(image_bytes):
         )
         import re
         text = response.choices[0].message.content
-        match = re.search(r'\{.*\}', text, re.DOTALL)
+        match = re.search(r'\[.*\]', text, re.DOTALL)
         if not match:
-            raise ValueError("No JSON object found in response.")
+            raise ValueError("No JSON array found in response.")
         extracted_data = json.loads(match.group(0))
         return extracted_data
         

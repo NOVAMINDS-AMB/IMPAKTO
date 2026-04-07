@@ -26,7 +26,7 @@ def list_transactions(request):
     transactions = Transaction.objects.filter(user=request.auth).order_by('-transaction_date')
     return transactions
 
-@router.post("/digitize", response={200: TransactionIn, 400: dict})
+@router.post("/digitize", response={200: List[TransactionIn], 400: dict})
 def digitize_ledger_image(request, file: UploadedFile = File(...)):
     """
     Receives an image file from the mobile app, passes it to Gemini for OCR,

@@ -9,7 +9,7 @@ interface ScreenDigitizedEntryProps {
 }
 
 export function ScreenDigitizedEntry({ onNext }: ScreenDigitizedEntryProps) {
-  const [draftData, setDraftData] = useState<TransactionData | null>(null);
+  const [draftData, setDraftData] = useState<TransactionData[] | null>(null);
   const [isSaving, setIsSaving] = useState(false);
   const [error, setError] = useState('');
 
@@ -29,14 +29,14 @@ export function ScreenDigitizedEntry({ onNext }: ScreenDigitizedEntryProps) {
 
   // 2. The function to officially save it to the database
   const handleConfirmAndSave = async () => {
-    if (!draftData) return;
+    if (!draftData || draftData.length === 0) return;
     
     setIsSaving(true);
     setError('');
 
     try {
       // Send the approved data to Django!
-      await ledgerService.createTransaction(draftData);
+      await Promise.all(draftData.map(data => ledgerService.createTransaction(data)));
       
       // Clear the temporary draft from memory
       localStorage.removeItem('impakto_draft_transaction');
@@ -97,68 +97,70 @@ export function ScreenDigitizedEntry({ onNext }: ScreenDigitizedEntryProps) {
           </div>
         </div>
 
-        <h2 className="text-2xl mb-1 text-gray-900">Review Entry</h2>
+        <h2 className="text-2xl mb-1 text-gray-900">Review Entries</h2>
         <p className="text-gray-600 mb-6">Confirm Impakto AI read your handwriting correctly.</p>
 
-        {/* Entry Details Card */}
-        <div className="bg-white rounded-xl p-5 border border-gray-200 space-y-4 shadow-sm">
-          
-          {/* Transaction Type */}
-          <div className="flex items-center gap-3 pb-4 border-b border-gray-100">
-            <div className={`rounded-lg p-3 ${draftData.transaction_type === 'INCOME' ? 'bg-emerald-100' : 'bg-red-100'}`}>
-              {draftData.transaction_type === 'INCOME' ? (
-                <TrendingUp className="w-6 h-6 text-emerald-600" />
-              ) : (
-                <TrendingDown className="w-6 h-6 text-red-600" />
-              )}
-            </div>
-            <div className="flex-1 overflow-y-auto">
-              <p className="text-sm text-gray-600">Transaction Type</p>
-              <p className="font-semibold text-gray-900">
-                {draftData.transaction_type === 'INCOME' ? 'Income / Sale' : 'Expense'}
-              </p>
-            </div>
-          </div>
+        <div className="space-y-4">
+          {draftData.map((data, index) => (
+            <div key={index} className="bg-white rounded-xl p-5 border border-gray-200 space-y-4 shadow-sm">
+              {/* Transaction Type */}
+              <div className="flex items-center gap-3 pb-4 border-b border-gray-100">
+                <div className={`rounded-lg p-3 ${data.transaction_type === 'INCOME' ? 'bg-emerald-100' : 'bg-red-100'}`}>
+                  {data.transaction_type === 'INCOME' ? (
+                    <TrendingUp className="w-6 h-6 text-emerald-600" />
+                  ) : (
+                    <TrendingDown className="w-6 h-6 text-red-600" />
+                  )}
+                </div>
+                <div className="flex-1 overflow-y-auto">
+                  <p className="text-sm text-gray-600">Transaction Type</p>
+                  <p className="font-semibold text-gray-900">
+                    {data.transaction_type === 'INCOME' ? 'Income / Sale' : 'Expense'}
+                  </p>
+                </div>
+              </div>
 
-          {/* Date */}
-          <div className="flex items-center gap-3 pb-4 border-b border-gray-100">
-            <div className="bg-blue-100 rounded-lg p-3">
-              <Calendar className="w-6 h-6 text-blue-600" />
-            </div>
-            <div className="flex-1 overflow-y-auto">
-              <p className="text-sm text-gray-600">Date</p>
-              <p className="font-semibold text-gray-900">{formatDate(draftData.transaction_date)}</p>
-            </div>
-          </div>
+              {/* Date */}
+              <div className="flex items-center gap-3 pb-4 border-b border-gray-100">
+                <div className="bg-blue-100 rounded-lg p-3">
+                  <Calendar className="w-6 h-6 text-blue-600" />
+                </div>
+                <div className="flex-1 overflow-y-auto">
+                  <p className="text-sm text-gray-600">Date</p>
+                  <p className="font-semibold text-gray-900">{formatDate(data.transaction_date)}</p>
+                </div>
+              </div>
 
-          {/* Amount */}
-          <div className="flex items-center gap-3 pb-4 border-b border-gray-100">
-            <div className="bg-amber-100 rounded-lg p-3">
-              <DollarSign className="w-6 h-6 text-amber-600" />
-            </div>
-            <div className="flex-1 overflow-y-auto">
-              <p className="text-sm text-gray-600">Amount</p>
-              <p className="font-semibold text-gray-900 text-xl">{formatCurrency(draftData.amount)}</p>
-            </div>
-          </div>
+              {/* Amount */}
+              <div className="flex items-center gap-3 pb-4 border-b border-gray-100">
+                <div className="bg-amber-100 rounded-lg p-3">
+                  <DollarSign className="w-6 h-6 text-amber-600" />
+                </div>
+                <div className="flex-1 overflow-y-auto">
+                  <p className="text-sm text-gray-600">Amount</p>
+                  <p className="font-semibold text-gray-900 text-xl">{formatCurrency(data.amount)}</p>
+                </div>
+              </div>
 
-          {/* Description & Category */}
-          <div className="flex items-center gap-3">
-            <div className="bg-purple-100 rounded-lg p-3">
-              <FileText className="w-6 h-6 text-purple-600" />
+              {/* Description & Category */}
+              <div className="flex items-center gap-3">
+                <div className="bg-purple-100 rounded-lg p-3">
+                  <FileText className="w-6 h-6 text-purple-600" />
+                </div>
+                <div className="flex-1 overflow-y-auto">
+                  <p className="text-sm text-gray-600">Description</p>
+                  <p className="font-semibold text-gray-900">{data.description || data.category || 'N/A'}</p>
+                  <p className="text-xs text-gray-500 uppercase tracking-wider mt-1">{data.category}</p>
+                </div>
+              </div>
             </div>
-            <div className="flex-1 overflow-y-auto">
-              <p className="text-sm text-gray-600">Description</p>
-              <p className="font-semibold text-gray-900">{draftData.description || draftData.category || 'N/A'}</p>
-              <p className="text-xs text-gray-500 uppercase tracking-wider mt-1">{draftData.category}</p>
-            </div>
-          </div>
+          ))}
         </div>
 
         {/* Summary */}
         <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 mt-6">
           <p className="text-sm text-blue-800">
-            Saving this entry will update your ledger and immediately recalculate your Trust Score.
+            Saving these entries will update your ledger and immediately recalculate your Trust Score.
           </p>
         </div>
       </div>
