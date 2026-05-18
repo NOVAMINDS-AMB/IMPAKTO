@@ -1,0 +1,6 @@
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import { MobileScreen } from '../MobileScreen';
+import { PrimaryButton } from '../PrimaryButton';
+export function Screen1Landing({ onNext, onLogin }) {
+    return (_jsxs(MobileScreen, { children: [_jsxs("div", { className: "flex-1 flex flex-col justify-center items-center text-center overflow-y-auto", children: [_jsx("div", { className: "mb-5 bg-white-100 rounded-full p-6 flex items-center justify-center", children: _jsx("img", { src: "/Impakto Official Logo.jpeg", alt: "Impakto logo", className: "w-16 h-16 object-contain" }) }), _jsx("h1", { className: "text-3xl mb-2 text-gray-900", children: _jsx("span", { className: "font-bold", children: "Impakto" }) }), _jsx("h2", { className: "text-2xl mb-4 text-gray-900", children: "Grow your business with confidence" }), _jsx("p", { className: "text-gray-600 text-lg mb-12", children: "Turn your sales records into access to capital" })] }), _jsxs("div", { className: "mt-auto space-y-3", children: [_jsx(PrimaryButton, { onClick: onNext, children: "Get Started" }), _jsx("button", { onClick: onLogin, className: "w-full py-4 text-emerald-600 font-semibold text-lg rounded-2xl border-2 border-emerald-600 bg-white hover:bg-emerald-50 transition-colors", children: "Sign In" })] })] }));
+}

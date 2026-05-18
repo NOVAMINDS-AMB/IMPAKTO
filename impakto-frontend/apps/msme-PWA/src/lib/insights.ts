@@ -46,11 +46,26 @@ function getBestSellerInsight(txns: TransactionResponse[]): Insight {
 
   const totals: Record<string, number> = {};
   for (const t of incomes) {
-    const cat = t.category || 'General';
-    totals[cat] = (totals[cat] ?? 0) + parseAmount(t.amount);
+    // Prefer description (specific product) over category (generalizing "SALES")
+    let rawName = t.description?.trim() || t.category || 'General';
+    
+    // Extract only the product name by removing common quantity separators and patterns
+    let productName = rawName.split(/-|\(|@/)[0].trim();
+    // Remove standalone quantity words like "10kg", "5 pcs"
+    productName = productName.replace(/\b\d+(\.\d+)?\s*(kg|g|l|ml|ltr|pcs|bags?|pieces?|boxes?|pkts?|packets?)\b/gi, '').trim();
+    
+    // Fallback if the whole string was a quantity and we stripped it all
+    if (!productName) {
+      productName = rawName.trim();
+    }
+    
+    // Capitalize the first letter for display consistency
+    productName = productName.charAt(0).toUpperCase() + productName.slice(1).toLowerCase();
+    
+    totals[productName] = (totals[productName] ?? 0) + parseAmount(t.amount);
   }
 
-  const [topCategory, topAmount] = Object.entries(totals).sort(
+  const [topProduct, topAmount] = Object.entries(totals).sort(
     ([, a], [, b]) => b - a
   )[0];
 
@@ -60,7 +75,7 @@ function getBestSellerInsight(txns: TransactionResponse[]): Insight {
   return {
     type: 'best_seller',
     title: 'Best Sellers',
-    body: `"${topCategory}" is your top income category, making up ${pct}% of your total sales. Consider keeping it well-stocked.`,
+    body: `"${topProduct}" is your top-selling product, making up ${pct}% of your total sales. Consider keeping it well-stocked.`,
   };
 }
 
